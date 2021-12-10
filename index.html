@@ -22,13 +22,23 @@
   </head>
 
   <body>
-    <!-- main: contains 1.form- input, 2. map, 3. cities -->
-    <header>
-      Sunny Weekend!
-      <nav>
-        <a href="#">Searched Cities</a>
-      </nav>
-    </header>
+    <!-- nav bar -->
+
+    <nav class="light-blue lighten-1" role="navigation">
+      <div class="nav-wrapper container">
+        <a id="logo-container" href="#" class="brand-logo">SUNNY WEEKEND!</a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="#">Searched Cities</a></li>
+        </ul>
+
+        <ul id="nav-mobile" class="sidenav">
+          <li><a href="#">Searched Cities</a></li>
+        </ul>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"
+          ><i class="material-icons">menu</i></a
+        >
+      </div>
+    </nav>
 
     <!-- 1. form: input date and temp -->
     <div class="form-input">
@@ -38,20 +48,25 @@
           placeholder="Your City"
           name="city"
           class="form-input"
+          id="your-city"
         />
         <input
           type="date"
           placeholder="Your travel date"
           name="travel-date"
           class="form-input"
+          id="your-date"
         />
         <input
           type="number"
           placeholder="Desired temperature"
           name="temp"
           class="form-input"
+          id="temp"
         />
-        <button type="submit" class="form-submit">Let's Go!</button>
+        <button type="submit" class="form-submit" id="lets-go-btn">
+          Let's Go!
+        </button>
       </form>
     </div>
 

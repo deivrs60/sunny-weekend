@@ -1,6 +1,10 @@
-// weather forecast call
-var APIKey = "be713046da2f1520bb5a2702cd2e8948";
-//  https://openweathermap.org/data/2.5/onecall?lon={lon}&lat={lat}...&exclude=minutely,hourly..&appid={apikey}
+var letsGoBtnEl = $("#lets-go-btn")
+var yourCityEl = $("#your-city")
+var yourDateEl = $("#your-date")
+var tempEl = $("#temp")
+
+
+
 
 
 var sanFrancisco = {
@@ -41,6 +45,39 @@ let lasVegas = {
 
 let sixCities = [sanFrancisco, saltLakeCity, sanAntonio, newYork, miami, lasVegas]
 
+// weather forecast call to get 8-day forecast for sixCities array
+var APIKey = "be713046da2f1520bb5a2702cd2e8948";
+for (var i = 0; i < sixCities.length; i++) {
+    var forecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + sixCities[i] + "&appid=" + APIKey;
+    fetch(forecast).then(function (response) {
+        if (response.ok) {
+            response.json()
+                .then(function (data) {
+                    //console.log(data)
+                    //loop thru day1 to day 8 of forecast
+                    for (var i = 0; i < 7; i++) {
+                        //date
+                        var forecastDay = data.list[i * 8]  //data given in 3hrs,multiply by 8 to get 24 hrs
+                        var date = new Date(parseInt(forecastDay.dt) * 1000)
+                        var formatDate = moment(date).format("MMM D, YYYY")
+                        console.log(forecastDay.dt, "forecastDay" + i, date, formatDate)
+
+                        //temp
+                        var temp = Math.round((forecastDay.main.temp - 273.15) * 1.80 + 32);
+
+                    }
+                })
+        }
+    })
+
+}
+
+// compare criteria to the weather
+    //1. what's closest? yourCity input compared to sixCities array which contains lon/lat info
+
+    //2. weather criteria > 80degrees
+
+
 
 // input 
 // accept click from map 
@@ -50,26 +87,14 @@ let sixCities = [sanFrancisco, saltLakeCity, sanAntonio, newYork, miami, lasVega
     // modal (box on page?)
 
 
-// weather 
-    // cities into array -- 
-        // name: San Francisco,
-            // longitude: "",
-            // latitude: "",
-        // Salt Late City
-        // San Antonio
-        // New York
-        // Miami 
-        // Las Vegas 
+
 
 
 // local storage
     // what is stored / what does it look like?
         // travel date / temperature (?) / current date of search (?)
 
-// compare criteria to the weather
-    // what's closest?
-    // distance()
-    // weather 
+
 
 // display all(?) data for user to compare / select 
     // highlight(?) recommended city?
