@@ -24,7 +24,7 @@
   <body>
     <!-- nav bar -->
 
-    <nav class="light-blue lighten-1" role="navigation">
+    <nav class="#ffca28 amber lighten-1" role="navigation">
       <div class="nav-wrapper container">
         <a id="logo-container" href="#" class="brand-logo">SUNNY WEEKEND!</a>
         <ul class="right hide-on-med-and-down">
@@ -40,35 +40,54 @@
       </div>
     </nav>
 
-    <!-- 1. form: input date and temp -->
-    <div class="form-input">
-      <form>
-        <input
-          type="text"
-          placeholder="Your City"
-          name="city"
-          class="form-input"
-          id="your-city"
-        />
-        <input
-          type="date"
-          placeholder="Your travel date"
-          name="travel-date"
-          class="form-input"
-          id="your-date"
-        />
-        <input
-          type="number"
-          placeholder="Desired temperature"
-          name="temp"
-          class="form-input"
-          id="temp"
-        />
-        <button type="submit" class="form-submit" id="lets-go-btn">
-          Let's Go!
-        </button>
-      </form>
-    </div>
+    <section class="hero">
+      <!-- 1. form: input date and temp -->
+      <div class="row">
+        <div class="col s12">
+          <div class="row">
+            <div class="description col s8">
+              <h4>Sunny Weekend Description</h4>
+              <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam,
+                quisquam. Amet officia qui magnam facere. Provident error ex
+                libero voluptate sed. Ut est veritatis vero ex, numquam debitis
+                et quasi.
+              </p>
+            </div>
+
+            <div class="input-field col s4 form-input">
+              <form>
+                <input
+                  type="text"
+                  placeholder="Your City"
+                  name="city"
+                  class="form-input"
+                  id="your-city"
+                />
+
+                <input
+                  type="date"
+                  placeholder="Your travel date"
+                  name="travel-date"
+                  class="form-input"
+                  id="your-date"
+                />
+                <input
+                  type="number"
+                  placeholder="Desired temperature"
+                  name="temp"
+                  class="form-input"
+                  id="temp"
+                />
+                <button type="submit" class="form-submit" id="lets-go-btn">
+                  Let's Go!
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- map -->
     <div id="map-box">

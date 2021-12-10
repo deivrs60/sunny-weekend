@@ -3,7 +3,9 @@ var yourCityEl = $("#your-city")
 var yourDateEl = $("#your-date")
 var tempEl = $("#temp")
 
-
+var keyOne = {
+    gm: "AIzaSyDHhLU6Jav6KPrjGlm5oldHNGPgYwCHMeo"
+};
 
 
 
@@ -74,8 +76,12 @@ for (var i = 0; i < sixCities.length; i++) {
 
 // compare criteria to the weather
     //1. what's closest? yourCity input compared to sixCities array which contains lon/lat info
+    // get a diff API to get distance and then sort closest to furthest
+
 
     //2. weather criteria > 80degrees
+    // function to see if temp in each city is greater than 80, if yes, have different background
+
 
 
 
