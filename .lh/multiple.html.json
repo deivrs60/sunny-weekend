@@ -1,0 +1,26 @@
+{
+    "sourceFile": "multiple.html",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1639112235506,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1639112251176,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n   <body>\r\n     <div id=\"map\"></div>\r\n \r\n     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->\r\n-    <script src=\"not-public.js\"></script>\r\n+    <script src=\"/js/not-public.js\"></script>\r\n     <script>\r\n         var url1=\"https://maps.googleapis.com/maps/api/js?key=\";\r\n         var url2= keyOne.gm;\r\n         var url3=\"&callback=initMap&v=weekly\";\r\n"
+                },
+                {
+                    "date": 1639112260821,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n   <body>\r\n     <div id=\"map\"></div>\r\n \r\n     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->\r\n-    <script src=\"/js/not-public.js\"></script>\r\n+    <script src=\"./js/not-public.js\"></script>\r\n     <script>\r\n         var url1=\"https://maps.googleapis.com/maps/api/js?key=\";\r\n         var url2= keyOne.gm;\r\n         var url3=\"&callback=initMap&v=weekly\";\r\n"
+                }
+            ],
+            "date": 1639112235506,
+            "name": "Commit-0",
+            "content": "<!DOCTYPE html>\r\n<html>\r\n  <head>\r\n    <title>Marker Labels</title>\r\n    <script src=\"https://polyfill.io/v3/polyfill.min.js?features=default\"></script>\r\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"./css/multiple.css\" />\r\n    <script src=\"./js/multiple.js\"></script>\r\n  </head>\r\n  <body>\r\n    <div id=\"map\"></div>\r\n\r\n    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->\r\n    <script src=\"not-public.js\"></script>\r\n    <script>\r\n        var url1=\"https://maps.googleapis.com/maps/api/js?key=\";\r\n        var url2= keyOne.gm;\r\n        var url3=\"&callback=initMap&v=weekly\";\r\n      \r\n        var scriptEl = document.createElement(\"script\");\r\n        scriptEl.src = url1 + url2 + url3;\r\n        document.body.appendChild(scriptEl);\r\n        </script>\r\n  <!-- Google maps API suggests async should be included within script tag -->\r\n  </body>\r\n  </html>"
+        }
+    ]
+}
