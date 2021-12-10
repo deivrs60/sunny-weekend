@@ -1,0 +1,18 @@
+{
+    "sourceFile": "js/script.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1639110074774,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1639110074774,
+            "name": "Commit-0",
+            "content": "// weather forecast call\nvar APIKey = \"be713046da2f1520bb5a2702cd2e8948\";\n//  https://openweathermap.org/data/2.5/onecall?lon={lon}&lat={lat}...&exclude=minutely,hourly..&appid={apikey}\n\n\nvar sanFrancisco = {\n    name: \"San Francisco\",\n    latLong: { lat: 37.76, lng: -122.45 },\n    temp: \"\",\n};\n\nlet saltLakeCity = {\n    name: \"Salt Lake City\",\n    latLong: { lat: 40.77, lng: -111.92 },\n    temp: \"\"\n}\n\nlet sanAntonio = {\n    name: \"San Antonio\",\n    latLong: { lat: 29.46, lng: -98.57 },\n    temp: \"\"\n}\n\nlet newYork = {\n    name: \"New York City\",\n    latLong: { lat: 40.76, lng: -74.00 },\n    temp: \"\"\n}\n\nlet miami = {\n    name: \"Miami\",\n    latLong: { lat: 27.77, lng: -80.22 },\n    temp: \"\"\n}\n\nlet lasVegas = {\n    name: \"Las Vegas\",\n    latLong: { lat: 36.14, lng: -115.20 },\n    temp: \"\"\n}\n\nlet sixCities = [sanFrancisco, saltLakeCity, sanAntonio, newYork, miami, lasVegas]\n\n\n// input \n// accept click from map \n    // criteria:\n    // accepted date \n    // accepted minimum temperature\n    // modal (box on page?)\n\n\n// weather \n    // cities into array -- \n        // name: San Francisco,\n            // longitude: \"\",\n            // latitude: \"\",\n        // Salt Late City\n        // San Antonio\n        // New York\n        // Miami \n        // Las Vegas \n\n\n// local storage\n    // what is stored / what does it look like?\n        // travel date / temperature (?) / current date of search (?)\n\n// compare criteria to the weather\n    // what's closest?\n    // distance()\n    // weather \n\n// display all(?) data for user to compare / select \n    // highlight(?) recommended city?\n    // de-emphasize non-recommended "
+        }
+    ]
+}
