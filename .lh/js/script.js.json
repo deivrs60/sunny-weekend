@@ -3,11 +3,27 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 4,
             "patches": [
                 {
                     "date": 1639110074774,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1639112654138,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,22 @@\n }\n \n let sixCities = [sanFrancisco, saltLakeCity, sanAntonio, newYork, miami, lasVegas]\n \n-\n+function initMap() {\n+    const middle = { lat: 41, lng: -98 };\n+    const map = new google.maps.Map(document.getElementById(\"map\"), {\n+      zoom: 5,\n+      center: middle,\n+    });\n+  \n+    // This event listener calls addMarker() when the map is clicked.\n+    google.maps.event.addListener(map, \"click\", (evt) => {\n+      addMarker(evt.latLng, map);\n+    });\n+    \n+  }\n+  \n // input \n // accept click from map \n     // criteria:\n     // accepted date \n"
+                },
+                {
+                    "date": 1639112720336,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,11 +48,11 @@\n       center: middle,\n     });\n   \n     // This event listener calls addMarker() when the map is clicked.\n-    google.maps.event.addListener(map, \"click\", (evt) => {\n-      addMarker(evt.latLng, map);\n-    });\n+    // google.maps.event.addListener(map, \"click\", (evt) => {\n+    //   addMarker(evt.latLng, map);\n+    // });\n     \n   }\n   \n // input \n"
+                },
+                {
+                    "date": 1639113865441,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,8 +47,13 @@\n       zoom: 5,\n       center: middle,\n     });\n   \n+    for ( i = 0 ; i < sixCities.length ; i++ ) {\n+        new google.maps.Marker({\n+          position: sixCities[i].latLong,\n+          map: map,\n+        });  \n     // This event listener calls addMarker() when the map is clicked.\n     // google.maps.event.addListener(map, \"click\", (evt) => {\n     //   addMarker(evt.latLng, map);\n     // });\n"
+                },
+                {
+                    "date": 1639114001731,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,10 @@\n     for ( i = 0 ; i < sixCities.length ; i++ ) {\n         new google.maps.Marker({\n           position: sixCities[i].latLong,\n           map: map,\n-        });  \n+        });\n+    }      \n     // This event listener calls addMarker() when the map is clicked.\n     // google.maps.event.addListener(map, \"click\", (evt) => {\n     //   addMarker(evt.latLng, map);\n     // });\n"
                 }
             ],
             "date": 1639110074774,
