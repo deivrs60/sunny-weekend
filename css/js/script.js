@@ -1,3 +1,8 @@
+// weather forecast call
+var APIKey = "be713046da2f1520bb5a2702cd2e8948";
+//  https://openweathermap.org/data/2.5/onecall?lon={lon}&lat={lat}...&exclude=minutely,hourly..&appid={apikey}
+
+
 // input 
 // accept click from map 
     // criteria:
