@@ -3,9 +3,6 @@ var yourCityEl = $("#your-city")
 var yourDateEl = $("#your-date")
 var tempEl = $("#temp")
 
-var keyOne = {
-    gm: "AIzaSyDHhLU6Jav6KPrjGlm5oldHNGPgYwCHMeo"
-};
 
 
 
