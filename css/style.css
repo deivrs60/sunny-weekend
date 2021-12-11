@@ -1,0 +1,135 @@
+*{
+    margin: 0;
+}
+
+:root{
+    --primary-color: dodgerblue;
+    --secondary-color: khaki;
+
+
+}
+
+body {
+    background-image: linear-gradient(to bottom right, yellow, turquoise, blue, purple );
+}
+
+.hero {
+    border: 2px solid gold;
+    text-align: center;
+}
+
+.hero h4 {
+    font-size: 48px;
+    text-align: center;
+}
+
+.hero p {
+    font-size: 28px;
+    text-align: left;
+}
+
+.form-input {
+    background: white;
+    color: black;
+    border-radius: 15px;
+    margin-left: 50px;
+    height: 250px;
+}
+
+.form-submit { 
+    height: 75px;
+    width: 125px;
+    border-radius: 15px;
+    font-size: 25px;
+}
+
+.form-submit:hover {
+    background-image: linear-gradient(to bottom right, yellow, turquoise);
+}
+
+
+.columns,
+.map-column,
+.city-column {
+    display: inline-flex;
+    
+}
+
+.map-column,
+.city-column {
+    max-width: 1200px;
+    background-image: linear-gradient(tan,#723c3c );
+    background-color: #723c3c;
+    justify-content: center;
+    margin: 25px 50px 25px 50px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.map-column {
+    height: 750px;
+}
+
+
+
+.destinations-card {
+    max-width: 500px;
+    margin: 15px;
+}
+
+
+.card-header,
+.card-body,
+.card-footer {
+    width: 500px;
+    border: 2px solid black;
+}
+
+.card-header {
+    background-image: linear-gradient(teal, var(--primary-color));
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    text-align: center;
+}
+
+.card-body {
+    background-image: linear-gradient(to bottom right, khaki, gold);
+}
+
+.card-footer {
+    background-image: linear-gradient(teal, turquoise);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    text-align: center;
+}
+
+.city-img img {
+max-width: 450px;
+max-height: 450px;
+margin: 10px 25px 10px 25px;
+border-radius: 15px;
+} 
+
+
+/* MEDIA QUERY FOR MOBILE PHONES AND SMALLER 
+@media screen and (max-width: 575px) {
+   .columns,
+    .map-column, 
+    .city-column {
+        max-width: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex: 100 100;
+
+    }
+
+    .map-column {
+        max-width: 100%;
+        height: 25vw;
+        width: 100%;
+    
+    }
+
+}
+*/ 
