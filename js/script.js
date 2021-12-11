@@ -1,6 +1,9 @@
-// weather forecast call
-var APIKey = "be713046da2f1520bb5a2702cd2e8948";
-//  https://openweathermap.org/data/2.5/onecall?lon={lon}&lat={lat}...&exclude=minutely,hourly..&appid={apikey}
+var letsGoBtnEl = $("#lets-go-btn")
+var yourCityEl = $("#your-city")
+var yourDateEl = $("#your-date")
+var tempEl = $("#temp")
+
+
 
 
 var sanFrancisco = {
@@ -47,6 +50,76 @@ let lasVegas = {
 
 let sixCities = [sanFrancisco, saltLakeCity, sanAntonio, newYork, miami, lasVegas]
 
+// weather forecast call to get 8-day forecast for sixCities array
+var APIKey = "be713046da2f1520bb5a2702cd2e8948";
+for (var i = 0; i < sixCities.length; i++) {
+    var forecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + sixCities[i] + "&appid=" + APIKey;
+    fetch(forecast).then(function (response) {
+        if (response.ok) {
+            response.json()
+                .then(function (data) {
+                    //console.log(data)
+                    //loop thru day1 to day 8 of forecast
+                    for (var i = 0; i < 7; i++) {
+                        //date
+                        var forecastDay = data.list[i * 8]  //data given in 3hrs,multiply by 8 to get 24 hrs
+                        var date = new Date(parseInt(forecastDay.dt) * 1000)
+                        var formatDate = moment(date).format("MMM D, YYYY")
+                        console.log(forecastDay.dt, "forecastDay" + i, date, formatDate)
+
+                        //temp
+                        var temp = Math.round((forecastDay.main.temp - 273.15) * 1.80 + 32);
+                        console.log(temp)
+
+                    }
+                })
+        }
+    })
+
+}
+
+// compare criteria to the weather
+//1. what's closest? yourCityEl input compared to sixCities array which contains lon/lat info
+// get a diff API call to get distance and then sort closest to furthest
+function getDistance(yourCityEl) {
+
+    // query url to make the API call 
+    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + yourCityEl + "&appid=" + APIKey;
+
+    // make a get request to url
+    fetch(queryURL)
+        .then(function (response) {
+            //request successful
+            if (response.ok) {
+
+                response.json().then(function (data) {
+                    //console.log(data)
+                    // get date using moment js
+                    var date = moment().format(" MM/DD/YYYY");
+                    console.log(date)
+
+                    // temp in degreeF
+                    var temp = Math.round((data.main.temp - 273.15) * 1.80 + 32);
+                    console.log(temp)
+
+                    // lat and lon
+                    var lat = data.coord.lat;
+                    var lon = data.coord.lon;
+                    console.log(lat, lon)
+                })
+            }
+
+        })
+
+
+
+}
+
+    //2. weather criteria > 80degrees
+    // function to see if temp in each city is greater than 80, if yes, have different background or some marker
+
+
+
 var startLocation = {
     latLong: { lat: "", lng: "" },
 }
@@ -85,6 +158,8 @@ function initMap() {
     // modal (box on page?)
 
 
+
+
 // weather 
     // get weather for each city on the specified date
 
@@ -93,10 +168,7 @@ function initMap() {
     // what is stored / what does it look like?
         // travel date / temperature (?) / current date of search (?)
 
-// compare criteria to the weather
-    // what's closest?
-    // distance()
-    // weather 
+
 
 // display all(?) data for user to compare / select 
     // highlight(?) recommended city?

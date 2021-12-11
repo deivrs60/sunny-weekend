@@ -3,41 +3,91 @@
   <meta charset="UTF-8" />
   <link rel="stylesheet" href="./css/style.css" />
 
-  <head> </head>
+  <head>
+    <!--Import Google Icon Font-->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!--Import materialize.css-->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="css/materialize.min.css"
+      media="screen,projection"
+    />
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
 
   <body>
-    <!-- main: contains 1.form- input, 2. map, 3. cities -->
-    <header>
-      Sunny Weekend!
-      <nav>
-        <a href="#">Searched Cities</a>
-      </nav>
-    </header>
+    <!-- nav bar -->
 
-    <!-- 1. form: input date and temp -->
-    <div class="form-input">
-      <form>
-        <input
-          type="text"
-          placeholder="Your City"
-          name="city"
-          class="form-input"
-        />
-        <input
-          type="date"
-          placeholder="Your travel date"
-          name="travel-date"
-          class="form-input"
-        />
-        <input
-          type="number"
-          placeholder="Desired temperature"
-          name="temp"
-          class="form-input"
-        />
-        <button type="submit" class="form-submit">Let's Go!</button>
-      </form>
-    </div>
+    <nav class="#ffca28 amber lighten-1" role="navigation">
+      <div class="nav-wrapper container">
+        <a id="logo-container" href="#" class="brand-logo">SUNNY WEEKEND!</a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="#">Searched Cities</a></li>
+        </ul>
+
+        <ul id="nav-mobile" class="sidenav">
+          <li><a href="#">Searched Cities</a></li>
+        </ul>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"
+          ><i class="material-icons">menu</i></a
+        >
+      </div>
+    </nav>
+
+    <section class="hero">
+      <!-- 1. form: input date and temp -->
+      <div class="row">
+        <div class="col s12">
+          <div class="row">
+            <div class="description col s8">
+              <h4>Sunny Weekend Description</h4>
+              <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam,
+                quisquam. Amet officia qui magnam facere. Provident error ex
+                libero voluptate sed. Ut est veritatis vero ex, numquam debitis
+                et quasi.
+              </p>
+            </div>
+
+            <div class="input-field col s4 form-input">
+              <form>
+                <input
+                  type="text"
+                  placeholder="Your City"
+                  name="city"
+                  class="form-input"
+                  id="your-city"
+                />
+
+                <input
+                  type="date"
+                  placeholder="Your travel date"
+                  name="travel-date"
+                  class="form-input"
+                  id="your-date"
+                />
+                <input
+                  type="number"
+                  placeholder="Desired temperature"
+                  name="temp"
+                  class="form-input"
+                  id="temp"
+                />
+                <button type="submit" class="form-submit" id="lets-go-btn">
+                  Let's Go!
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- map -->
     <div id="map-box">
@@ -58,65 +108,48 @@
 
     <!-- miami, las vegas, salt lake city, new york, san francisco, san antonio-->
     <section class="destinations" id="destinations">
-      
       <div class="destinations" id="recommended destination">
-
-        <!-- image -->
-        <div class="city-img"></div>
-
-        <!-- weather -->
-        <div class="weather" id="weather">
-
-        </div>
-
-      </div>
-
-
-      <div class="destinations" id="destination">
-
-        <!-- image -->
-        <div class="city-img"></div>
-
-        <div class="weather" id="weather"></div>
-
-      </div>
-
-
-      <div class="destinations" id="destination">
-
         <!-- image -->
         <div class="city-img"></div>
 
         <!-- weather -->
         <div class="weather" id="weather"></div>
-
       </div>
 
+      <div class="destinations" id="destination">
+        <!-- image -->
+        <div class="city-img"></div>
+
+        <div class="weather" id="weather"></div>
+      </div>
 
       <div class="destinations" id="destination">
-
         <!-- image -->
         <div class="city-img"></div>
 
         <!-- weather -->
         <div class="weather" id="weather"></div>
-
       </div>
 
+      <div class="destinations" id="destination">
+        <!-- image -->
+        <div class="city-img"></div>
+
+        <!-- weather -->
+        <div class="weather" id="weather"></div>
+      </div>
 
       <div class="destinations" id="destination">
-
         <!-- image -->
         <div class="city-img"></div>
 
         <div class="weather" id="weather"></div>
-
       </div>
-
     </section>
 
     <script src="./js/script.js"></script>
     <script src="./js/not-public.js"></script>
+    <script type="text/javascript" src="./js/materialize.min.js"></script>
     <script>
         var url1="https://maps.googleapis.com/maps/api/js?key=";
         var url2= keyOne.gm;
@@ -126,6 +159,5 @@
         scriptEl.src = url1 + url2 + url3;
         document.body.appendChild(scriptEl);
     </script>
-
   </body>
 </html>
