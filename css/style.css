@@ -1,0 +1,57 @@
+*{
+    margin: 0;
+}
+
+:root{
+    --primary-color: dodgerblue;
+    --secondary-color: khaki;
+
+
+}
+
+
+
+
+
+
+
+.destinations-card {
+    margin-bottom: 15px;
+    margin-left: 15px;
+    max-width: 500px;
+}
+
+
+.card-header,
+.card-body,
+.card-footer {
+    width: 500px;
+    border: 2px solid black;
+}
+
+.card-header {
+    background: var(--primary-color);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    text-align: center;
+}
+
+.card-body {
+    background: khaki;
+}
+
+.card-footer {
+    background-color: dodgerblue;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    text-align: center;
+}
+
+.city-img img {
+max-width: 450px;
+max-height: 450px;
+margin-right: 25px;
+margin-left: 25px;
+margin-top: 10px;
+margin-bottom: 10px;
+} 

@@ -7,36 +7,42 @@ var sanFrancisco = {
     name: "San Francisco",
     latLong: { lat: 37.76, lng: -122.45 },
     temp: "",
+    image: "" 
 };
 
 let saltLakeCity = {
     name: "Salt Lake City",
     latLong: { lat: 40.77, lng: -111.92 },
-    temp: ""
+    temp: "",
+    image: ""
 }
 
 let sanAntonio = {
     name: "San Antonio",
     latLong: { lat: 29.46, lng: -98.57 },
-    temp: ""
+    temp: "",
+    image: "",
 }
 
 let newYork = {
     name: "New York City",
     latLong: { lat: 40.76, lng: -74.00 },
-    temp: ""
+    temp: "",
+    image: ""
 }
 
 let miami = {
     name: "Miami",
     latLong: { lat: 27.77, lng: -80.22 },
-    temp: ""
+    temp: "",
+    image: ""
 }
 
 let lasVegas = {
     name: "Las Vegas",
     latLong: { lat: 36.14, lng: -115.20 },
-    temp: ""
+    temp: "",
+    image: ""
 }
 
 let sixCities = [sanFrancisco, saltLakeCity, sanAntonio, newYork, miami, lasVegas]
