@@ -9,16 +9,38 @@
 
 }
 
+body {
+    background-image: linear-gradient(yellow, turquoise, blue, purple );
+}
 
 
+.columns,
+.map-column,
+.city-column {
+    display: inline-flex;
+    
+}
 
+.map-column,
+.city-column {
+    max-width: 1200px;
+    background-image: linear-gradient(tan,#723c3c );
+    background-color: #723c3c;
+    justify-content: space-between;
+    margin: 25px 50px 25px 50px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.map-column {
+    height: 750px;
+}
 
 
 
 .destinations-card {
-    margin-bottom: 15px;
-    margin-left: 15px;
     max-width: 500px;
+    margin: 15px;
 }
 
 
@@ -30,18 +52,18 @@
 }
 
 .card-header {
-    background: var(--primary-color);
+    background-image: linear-gradient(teal, var(--primary-color));
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     text-align: center;
 }
 
 .card-body {
-    background: khaki;
+    background-image: linear-gradient(to bottom right, khaki, gold);
 }
 
 .card-footer {
-    background-color: dodgerblue;
+    background-image: linear-gradient(teal, turquoise);
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     text-align: center;
@@ -50,8 +72,30 @@
 .city-img img {
 max-width: 450px;
 max-height: 450px;
-margin-right: 25px;
-margin-left: 25px;
-margin-top: 10px;
-margin-bottom: 10px;
+margin: 10px 25px 10px 25px;
+border-radius: 15px;
 } 
+
+
+/* MEDIA QUERY FOR MOBILE PHONES AND SMALLER 
+@media screen and (max-width: 575px) {
+   .columns,
+    .map-column, 
+    .city-column {
+        max-width: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex: 100 100;
+
+    }
+
+    .map-column {
+        max-width: 100%;
+        height: 25vw;
+        width: 100%;
+    
+    }
+
+}
+*/ 
