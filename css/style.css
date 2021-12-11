@@ -10,7 +10,41 @@
 }
 
 body {
-    background-image: linear-gradient(yellow, turquoise, blue, purple );
+    background-image: linear-gradient(to bottom right, yellow, turquoise, blue, purple );
+}
+
+.hero {
+    border: 2px solid gold;
+    text-align: center;
+}
+
+.hero h4 {
+    font-size: 48px;
+    text-align: center;
+}
+
+.hero p {
+    font-size: 28px;
+    text-align: left;
+}
+
+.form-input {
+    background: white;
+    color: black;
+    border-radius: 15px;
+    margin-left: 50px;
+    height: 250px;
+}
+
+.form-submit { 
+    height: 75px;
+    width: 125px;
+    border-radius: 15px;
+    font-size: 25px;
+}
+
+.form-submit:hover {
+    background-image: linear-gradient(to bottom right, yellow, turquoise);
 }
 
 
@@ -26,7 +60,7 @@ body {
     max-width: 1200px;
     background-image: linear-gradient(tan,#723c3c );
     background-color: #723c3c;
-    justify-content: space-between;
+    justify-content: center;
     margin: 25px 50px 25px 50px;
     border-radius: 15px;
     text-align: center;
