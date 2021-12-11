@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <meta charset="UTF-8" />
-  <link rel="stylesheet" href="./assets/css/style.css" />
+  <link rel="stylesheet" href="./css/style.css" />
 
   <head>
     <!--Import Google Icon Font-->
@@ -91,19 +91,18 @@
 
     <!-- map -->
     <div id="map-box">
-      <div id="map-title">header over the map</div>
-      <div id="map-map">
-        <iframe
-          width="600"
-          height="450"
-          style="border: 0"
-          loading="lazy"
-          allowfullscreen
-          src="https://www.google.com/maps/embed/v1/place?key=API_KEY
-                    &q=Space+Needle,Seattle+WA"
-        >
-        </iframe>
-      </div>
+        <div id="map-title">header over the map</div>
+        <div id="map" style="height: 800px">
+            <!-- <iframe
+                width="600"
+                height="450"
+                style="border:0"
+                loading="lazy"
+                allowfullscreen
+                src="https://www.google.com/maps/embed/v1/place?key=API_KEY
+                    &q=Space+Needle,Seattle+WA">
+            </iframe> -->
+        </div>
     </div>
     <!--cities -->
 
@@ -149,8 +148,16 @@
     </section>
 
     <script src="./js/script.js"></script>
-    <script src="./js/multiple.js"></script>
     <script src="./js/not-public.js"></script>
     <script type="text/javascript" src="./js/materialize.min.js"></script>
+    <script>
+        var url1="https://maps.googleapis.com/maps/api/js?key=";
+        var url2= keyOne.gm;
+        var url3="&callback=initMap&v=weekly";
+      
+        var scriptEl = document.createElement("script");
+        scriptEl.src = url1 + url2 + url3;
+        document.body.appendChild(scriptEl);
+    </script>
   </body>
 </html>

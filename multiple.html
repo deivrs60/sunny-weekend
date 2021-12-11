@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Marker Labels</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link rel="stylesheet" type="text/css" href="./css/multiple.css" />
+    <script src="./js/multiple.js"></script>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script src="./js/not-public.js"></script>
+    <script>
+        var url1="https://maps.googleapis.com/maps/api/js?key=";
+        var url2= keyOne.gm;
+        var url3="&callback=initMap&v=weekly";
+      
+        var scriptEl = document.createElement("script");
+        scriptEl.src = url1 + url2 + url3;
+        document.body.appendChild(scriptEl);
+        </script>
+  <!-- Google maps API suggests async should be included within script tag -->
+  </body>
+  </html>
