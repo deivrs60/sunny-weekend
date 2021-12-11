@@ -47,7 +47,26 @@ let lasVegas = {
 
 let sixCities = [sanFrancisco, saltLakeCity, sanAntonio, newYork, miami, lasVegas]
 
-
+function initMap() {
+    const middle = { lat: 41, lng: -98 };
+    const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 5,
+      center: middle,
+    });
+  
+    for ( i = 0 ; i < sixCities.length ; i++ ) {
+        new google.maps.Marker({
+          position: sixCities[i].latLong,
+          map: map,
+        });
+    }      
+    // This event listener calls addMarker() when the map is clicked.
+    // google.maps.event.addListener(map, "click", (evt) => {
+    //   addMarker(evt.latLng, map);
+    // });
+    
+  }
+  
 // input 
 // accept click from map 
     // criteria:
