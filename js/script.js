@@ -63,6 +63,7 @@ for (var i = 0; i < sixCities.length; i++) {
 
                         //temp
                         var temp = Math.round((forecastDay.main.temp - 273.15) * 1.80 + 32);
+                        console.log(temp)
 
                     }
                 })
@@ -72,12 +73,44 @@ for (var i = 0; i < sixCities.length; i++) {
 }
 
 // compare criteria to the weather
-    //1. what's closest? yourCity input compared to sixCities array which contains lon/lat info
-    // get a diff API to get distance and then sort closest to furthest
+//1. what's closest? yourCityEl input compared to sixCities array which contains lon/lat info
+// get a diff API call to get distance and then sort closest to furthest
+function getDistance(yourCityEl) {
 
+    // query url to make the API call 
+    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + yourCityEl + "&appid=" + APIKey;
+
+    // make a get request to url
+    fetch(queryURL)
+        .then(function (response) {
+            //request successful
+            if (response.ok) {
+
+                response.json().then(function (data) {
+                    //console.log(data)
+                    // get date using moment js
+                    var date = moment().format(" MM/DD/YYYY");
+                    console.log(date)
+
+                    // temp in degreeF
+                    var temp = Math.round((data.main.temp - 273.15) * 1.80 + 32);
+                    console.log(temp)
+
+                    // lat and lon
+                    var lat = data.coord.lat;
+                    var lon = data.coord.lon;
+                    console.log(lat, lon)
+                })
+            }
+
+        })
+
+
+
+}
 
     //2. weather criteria > 80degrees
-    // function to see if temp in each city is greater than 80, if yes, have different background
+    // function to see if temp in each city is greater than 80, if yes, have different background or some marker
 
 
 
