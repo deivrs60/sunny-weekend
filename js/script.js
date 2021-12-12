@@ -142,13 +142,25 @@ function initMap() {
         });
     }      
     // This event listener calls addMarker() when the map is clicked.
-    // google.maps.event.addListener(map, "click", (evt) => {
-    //   addMarker(evt.latLng, map);
-    // });
+    google.maps.event.addListener(map, "click", (evt) => {
+      addMarker(evt.latLng, map);
+    });
     // ~~~ keep this event listener, but turn it off after the user clicks the map
     
-  }
-  
+}
+
+// Adds a marker to the map.
+function addMarker(location, map) {
+    // Add the marker at the clicked location, and add the next-available label
+    // from the array of alphabetical characters.
+    new google.maps.Marker({
+      position: location,
+      label: "A",
+      map: map,
+    });
+  }  
+
+
 // input 
 // accept click from map 
     // criteria:
