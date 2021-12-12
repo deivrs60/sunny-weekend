@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 22,
+            "activePatchIndex": 26,
             "patches": [
                 {
                     "date": 1639110074774,
@@ -96,6 +96,22 @@
                 {
                     "date": 1639323291826,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -166,15 +166,19 @@\n     // const geocoder = new google.maps.Geocoder();\n     const service = new google.maps.DistanceMatrixService();\n \n     // build request\n-    const origin1 = { lat: 27.77, lng: -80.22 };\n-    const origin2 = { lat: 40.76, lng: -74.00 };\n-    const destinationA = \"Chicago, Illinois\";\n-    const destinationB = { lat: 50.087, lng: 14.421 };\n+    const chicagoString = \"Chicago, Illinois\";\n+    var originLocationsArray = [];\n+    var destinationLocationsArray = [];\n+    for ( i = 0 ; i < sixCities.length ; i++ ) {\n+        originLocationsArray[i] = sixCities[i].latLong;\n+        destinationLocationsArray[i] = chicagoString;\n+    }\n+    console.log(originLocationsArray);\n     const request = {\n-        origins: [origin1, origin2],\n-        destinations: [destinationA, destinationA],\n+        origins: originLocationsArray,\n+        destinations: destinationLocationsArray,\n         travelMode: google.maps.TravelMode.DRIVING,\n         unitSystem: google.maps.UnitSystem.METRIC,\n         avoidHighways: false,\n         avoidTolls: false,\n"
+                },
+                {
+                    "date": 1639323848122,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -191,8 +191,9 @@\n             response,\n             null,\n             2\n         ));\n+        console.log(response);\n     })\n }\n         \n \n"
+                },
+                {
+                    "date": 1639324273675,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -169,11 +169,12 @@\n     // build request\n     const chicagoString = \"Chicago, Illinois\";\n     var originLocationsArray = [];\n     var destinationLocationsArray = [];\n+    destinationLocationsArray[0] = chicagoString;\n     for ( i = 0 ; i < sixCities.length ; i++ ) {\n         originLocationsArray[i] = sixCities[i].latLong;\n-        destinationLocationsArray[i] = chicagoString;\n+        // destinationLocationsArray[i] = chicagoString;\n     }\n     console.log(originLocationsArray);\n     const request = {\n         origins: originLocationsArray,\n"
+                },
+                {
+                    "date": 1639324624709,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n }\n \n let miami = {\n     name: \"Miami\",\n-    latLong: { lat: 27.77, lng: -80.22 },\n+    latLong: { lat: 25.77, lng: -80.26 },\n     temp: \"\",\n     distance: \"\",\n }\n \n"
+                },
+                {
+                    "date": 1639325279561,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -193,8 +193,13 @@\n             null,\n             2\n         ));\n         console.log(response);\n+        var receivedDistanceInformation = response;\n+        console.log(receivedDistanceInformation);\n+        for ( i = 0 ; i < sixCities.length ; i++ ) {\n+            sixCities[0].distance = receivedDistanceInformation.rows[i].elements[0].distance;\n+        }\n     })\n }\n         \n \n"
                 }
             ],
             "date": 1639110074774,

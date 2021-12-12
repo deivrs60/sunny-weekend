@@ -37,7 +37,7 @@ let newYork = {
 
 let miami = {
     name: "Miami",
-    latLong: { lat: 27.77, lng: -80.22 },
+    latLong: { lat: 25.77, lng: -80.26 },
     temp: "",
     distance: "",
 }
@@ -170,9 +170,10 @@ var getDistance2 = function(){
     const chicagoString = "Chicago, Illinois";
     var originLocationsArray = [];
     var destinationLocationsArray = [];
+    destinationLocationsArray[0] = chicagoString;
     for ( i = 0 ; i < sixCities.length ; i++ ) {
         originLocationsArray[i] = sixCities[i].latLong;
-        destinationLocationsArray[i] = chicagoString;
+        // destinationLocationsArray[i] = chicagoString;
     }
     console.log(originLocationsArray);
     const request = {
@@ -192,6 +193,12 @@ var getDistance2 = function(){
             null,
             2
         ));
+        console.log(response);
+        var receivedDistanceInformation = response;
+        console.log(receivedDistanceInformation);
+        for ( i = 0 ; i < sixCities.length ; i++ ) {
+            sixCities[0].distance = receivedDistanceInformation.rows[i].elements[0].distance;
+        }
     })
 }
         
