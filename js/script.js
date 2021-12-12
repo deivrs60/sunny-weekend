@@ -1,7 +1,8 @@
-var letsGoBtnEl = $("#lets-go-btn")
-var yourCityEl = $("#your-city")
-var yourDateEl = $("#your-date")
-var tempEl = $("#temp")
+// SR: I commented these out because they were throwing an error which was causing the map to not load properly
+// var letsGoBtnEl = $("#lets-go-btn")
+// var yourCityEl = $("#your-city")
+// var yourDateEl = $("#your-date")
+// var tempEl = $("#temp")
 
 
 
@@ -48,7 +49,7 @@ let lasVegas = {
     distance: "",
 }
 
-let sixCities = [sanFrancisco, saltLakeCity, sanAntonio, newYork, miami, lasVegas]
+var sixCities = [sanFrancisco, saltLakeCity, sanAntonio, newYork, miami, lasVegas]
 
 // weather forecast call to get 8-day forecast for sixCities array
 var APIKey = "be713046da2f1520bb5a2702cd2e8948";
@@ -130,7 +131,7 @@ var cityIndexByTemperatureArray = []
 function initMap() {
     const middle = { lat: 41, lng: -98 };
     const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 5,
+      zoom: 4,
       center: middle,
     });
   
