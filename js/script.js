@@ -146,6 +146,7 @@ function initMap() {
       addMarker(evt.latLng, map);
     });
     // ~~~ keep this event listener, but turn it off after the user clicks the map
+
     
 }
 
@@ -160,6 +161,40 @@ function addMarker(location, map) {
     });
   }  
 
+var getDistance2 = function(){
+    // initialize services
+    // const geocoder = new google.maps.Geocoder();
+    const service = new google.maps.DistanceMatrixService();
+
+    // build request
+    const chicagoString = "Chicago, Illinois";
+    var originLocationsArray = [];
+    var destinationLocationsArray = [];
+    for ( i = 0 ; i < sixCities.length ; i++ ) {
+        originLocationsArray[i] = sixCities[i].latLong;
+        destinationLocationsArray[i] = chicagoString;
+    }
+    console.log(originLocationsArray);
+    const request = {
+        origins: originLocationsArray,
+        destinations: destinationLocationsArray,
+        travelMode: google.maps.TravelMode.DRIVING,
+        unitSystem: google.maps.UnitSystem.METRIC,
+        avoidHighways: false,
+        avoidTolls: false,
+    };
+    
+    // get distance matrix response
+    service.getDistanceMatrix(request).then((response) => {
+        // put response
+        console.log(JSON.stringify(
+            response,
+            null,
+            2
+        ));
+    })
+}
+        
 
 // input 
 // accept click from map 
