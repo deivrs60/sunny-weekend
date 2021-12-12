@@ -1,8 +1,8 @@
 // SR: I commented these out because they were throwing an error which was causing the map to not load properly
-// var letsGoBtnEl = $("#lets-go-btn")
-// var yourCityEl = $("#your-city")
-// var yourDateEl = $("#your-date")
-// var tempEl = $("#temp")
+//var letsGoBtnEl = $("#lets-go-btn")
+//var yourCityEl = $("#your-city")
+//var yourDateEl = $("#your-date")
+//var tempEl = $("#temp")
 
 
 
@@ -116,8 +116,8 @@ function getDistance(yourCityEl) {
 
 }
 
-    //2. weather criteria > 80degrees
-    // function to see if temp in each city is greater than 80, if yes, have different background or some marker
+//2. weather criteria > 80degrees
+// function to see if temp in each city is greater than 80, if yes, have different background or some marker
 
 
 
@@ -131,24 +131,24 @@ var cityIndexByTemperatureArray = []
 function initMap() {
     const middle = { lat: 41, lng: -98 };
     const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 4,
-      center: middle,
+        zoom: 4,
+        center: middle,
     });
-  
-    for ( i = 0 ; i < sixCities.length ; i++ ) {
+
+    for (i = 0; i < sixCities.length; i++) {
         new google.maps.Marker({
-          position: sixCities[i].latLong,
-          map: map,
+            position: sixCities[i].latLong,
+            map: map,
         });
-    }      
+    }
     // This event listener calls addMarker() when the map is clicked.
     // google.maps.event.addListener(map, "click", (evt) => {
     //   addMarker(evt.latLng, map);
     // });
     // ~~~ keep this event listener, but turn it off after the user clicks the map
-    
-  }
-  
+
+}
+
 // input 
 // accept click from map 
     // criteria:
