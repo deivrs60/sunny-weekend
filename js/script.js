@@ -37,7 +37,7 @@ let newYork = {
 
 let miami = {
     name: "Miami",
-    latLong: { lat: 27.77, lng: -80.22 },
+    latLong: { lat: 25.77, lng: -80.26 },
     temp: "",
     distance: "",
 }
@@ -142,13 +142,67 @@ function initMap() {
         });
     }      
     // This event listener calls addMarker() when the map is clicked.
-    // google.maps.event.addListener(map, "click", (evt) => {
-    //   addMarker(evt.latLng, map);
-    // });
+    google.maps.event.addListener(map, "click", (evt) => {
+      addMarker(evt.latLng, map);
+    });
     // ~~~ keep this event listener, but turn it off after the user clicks the map
+
     
-  }
-  
+}
+
+// Adds a marker to the map.
+function addMarker(location, map) {
+    // Add the marker at the clicked location, and add the next-available label
+    // from the array of alphabetical characters.
+    new google.maps.Marker({
+      position: location,
+      label: "A",
+      map: map,
+    });
+  }  
+
+var getDistance2 = function(){
+    // initialize services
+    // const geocoder = new google.maps.Geocoder();
+    const service = new google.maps.DistanceMatrixService();
+
+    // build request
+    const chicagoString = "Chicago, Illinois";
+    var originLocationsArray = [];
+    var destinationLocationsArray = [];
+    destinationLocationsArray[0] = chicagoString;
+    for ( i = 0 ; i < sixCities.length ; i++ ) {
+        originLocationsArray[i] = sixCities[i].latLong;
+        // destinationLocationsArray[i] = chicagoString;
+    }
+    console.log(originLocationsArray);
+    const request = {
+        origins: originLocationsArray,
+        destinations: destinationLocationsArray,
+        travelMode: google.maps.TravelMode.DRIVING,
+        unitSystem: google.maps.UnitSystem.METRIC,
+        avoidHighways: false,
+        avoidTolls: false,
+    };
+    
+    // get distance matrix response
+    service.getDistanceMatrix(request).then((response) => {
+        // put response
+        console.log(JSON.stringify(
+            response,
+            null,
+            2
+        ));
+        console.log(response);
+        var receivedDistanceInformation = response;
+        console.log(receivedDistanceInformation);
+        for ( i = 0 ; i < sixCities.length ; i++ ) {
+            sixCities[0].distance = receivedDistanceInformation.rows[i].elements[0].distance;
+        }
+    })
+}
+        
+
 // input 
 // accept click from map 
     // criteria:
