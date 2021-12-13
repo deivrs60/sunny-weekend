@@ -51,17 +51,30 @@ body {
     background-attachment: fixed;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: flex-start;
     
+}
+
+.hero .row {
+    justify-content: center;
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 100%;
 }
 
 .hero h3,
 .form-section-steps h3 {
     font-size: 48px;
     text-align: center;
-    margin: 75px 0 50px 0;
+    margin-top: 5%;
     font-weight: 900;
+    padding-top: 5%;
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 100%;
 }
 
 .hero p {
@@ -75,15 +88,14 @@ body {
 /* begin map section */
 .map-column {
     display: inline-flex;
-    max-width: 990px;
     background-image: linear-gradient(to right bottom,tan,#723c3c );
     background-color: #723c3c;
-    margin: 25px 50px 25px 50px;
     border-radius: 15px;
     text-align: center;
     height: 600px;
-    width: 750px;
+    width: 600px;
     justify-content: center;
+    margin-top: 5%;
     
 }
 
@@ -106,9 +118,13 @@ body {
 .form-box {
     display: inline-flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-evenly;
     width: 100%;
     
+}
+
+.form-section {
+    margin-top: 5%;
 }
 .form-input {
     color: black;
@@ -119,7 +135,6 @@ body {
     font-size: 20px;
     color: #024e76;
     width: 50%;
-    margin-left: 25%;
     margin-bottom: 15px;
     background-color: rgba(255, 255, 255, 0.75);
     text-align: center;
@@ -164,13 +179,66 @@ body {
 
 /* end form section */
 
+/* begin recommended destination's card section */
 
-
-.destinations-card {
+.recommended-destination {
+    background-image: linear-gradient(to bottom right, gold, yellow);
+}
+.recom-destinations-card {
     max-width: 500px;
     height: 600px;
+    margin-top: 5%;
 }
 
+.recom-card-header,
+.recom-card-body,
+.recom-card-footer {
+    width: 500px;
+    border: 2px solid black;
+}
+
+.recom-card-header {
+    background-image: linear-gradient(teal, var(--primary-color));
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    text-align: center;
+}
+.recom-card-header h3 {
+    font-size: 36px;
+}
+.recom-card-body {
+    background-image: linear-gradient(to bottom right, khaki, gold);
+}
+
+.recom-card-footer {
+    background-image: linear-gradient(teal, turquoise);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    text-align: center;
+
+}
+
+.recom-city-img img  {
+max-width: 450px;
+max-height: 450px;
+margin: 10px 25px 10px 25px;
+border-radius: 15px;
+} 
+
+.recom-city-img img:hover {
+    cursor: pointer;
+}
+/* end recommended card destination's section */
+
+/* begin destinations row sections */
+.destinations-row {
+    background-image: linear-gradient(to right bottom,tan,#723c3c);
+    display: inline-flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    padding-top: 5%;
+    border: 2px solid gold;
+}
 
 .card-header,
 .card-body,
@@ -195,6 +263,7 @@ body {
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     text-align: center;
+    margin-bottom: 2%;
 }
 
 .city-img img {
@@ -203,6 +272,17 @@ max-height: 450px;
 margin: 10px 25px 10px 25px;
 border-radius: 15px;
 } 
+
+.city-img img:hover {
+    cursor: pointer;
+}
+
+.recommended-destination {
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+}
+
 
 
 /* MEDIA QUERY FOR MOBILE PHONES AND SMALLER 
