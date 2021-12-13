@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-  <meta charset="UTF-8" />
-  <link rel="stylesheet" href="./css/style.css" />
 
   <head>
     <!--Import Google Icon Font-->
@@ -17,6 +15,9 @@
       media="screen,projection"
     />
 
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./css/style.css" />
+
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
@@ -24,14 +25,15 @@
   <body>
     <!-- nav bar -->
 
-    <nav class="#ffca28 amber lighten-1" role="navigation">
+    <nav class="nav" role="navigation">
       <div class="nav-wrapper container">
         <a id="logo-container" href="#" class="brand-logo">SUNNY WEEKEND!</a>
-        <ul class="right hide-on-med-and-down">
-          <li><a href="#">Searched Cities</a></li>
-        </ul>
-
-        <ul id="nav-mobile" class="sidenav">
+            <ul class="right hide-on-med-and-down">
+              <li><a href="#">Previous Searches</a></li>
+            </ul>
+      </div>
+      <div class="sidenav">
+        <ul id="nav-mobile">
           <li><a href="#">Searched Cities</a></li>
         </ul>
         <a href="#" data-target="nav-mobile" class="sidenav-trigger"
@@ -41,63 +43,25 @@
     </nav>
 
     <section class="hero">
-      <!-- 1. form: input date and temp -->
+      <!-- Description -->
       <div class="row">
         <div class="col s12">
           <div class="row">
             <div class="description col s6">
-              <h4>Sunny Weekend Description</h4>
+              <h4>Don't Stay Where The Sun Don't Shine</h4>
               <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam,
-                quisquam. Amet officia qui magnam facere. Provident error ex
-                libero voluptate sed. Ut est veritatis vero ex, numquam debitis
-                et quasi.
+                Do you have a busy schedule? Do you want to go out and explore more? Your current city's weather just not doing it for you? 
+                <br>
+                We can help!
               </p>
             </div>
 
-            <div class="input-field col s5 form-input">
-              <form>
-                <input
-                  type="text"
-                  placeholder="Your City"
-                  name="city"
-                  class="form-input"
-                  id="your-city"
-                />
-
-                <input
-                  type="date"
-                  placeholder="Your travel date"
-                  name="travel-date"
-                  class="form-input"
-                  id="your-date"
-                />
-                <input
-                  type="number"
-                  placeholder="Desired temperature"
-                  name="temp"
-                  class="form-input"
-                  id="temp"
-                />
-                <button type="submit" class="form-submit" id="lets-go-btn">
-                  Let's Go!
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- 3 COLUMN BEGINS -->
-    <div class="columns">
+            <!-- M A P Section Begins-->
       <div class="map-column">
-        <!-- map -->
         <div id="map-box">
-          <div id="map-title">header over the map</div>
-          <div id="map-map">
-              <iframe
+          <div id="map-title">Step 1: Click on your current location!</div>
+          <div id="map" style="height: 500px; width: 500px">
+              <!-- <iframe
                   width="600"
                   height="450"
                   style="border:0"
@@ -105,159 +69,185 @@
                   allowfullscreen
                   src="https://www.google.com/maps/embed/v1/place?key=API_KEY
                       &q=Space+Needle,Seattle+WA">
-              </iframe>
+              </iframe> -->
           </div>
+        </div>
       </div>
+    </section>
+
+
+    <div class="input-field col s5 form-input">
+      <form>
+        <label for="city">Enter Your City:</label>
+        <input type="text" placeholder="Your City" name="city" class="form-input" id="your-city"/>
+        <label for="travel-date">Choose Your Desired Travel Date:</label>
+        <input type="date" placeholder="Your travel date" name="travel-date" class="form-input" id="your-date"/>
+        <label for="temp">Enter or Choose Your Desired Temperature:</label>
+        <input type="number" placeholder="Desired temperature"name="temp" class="form-input" id="temp"/>
+        <button type="submit" class="form-submit" id="lets-go-btn">
+          Let's Go!
+        </button>
+      </form>
+    </div>
+
+
+
+
+
+
+    <section class="recommended-destination" id="recommended-destination">
+    <div class="recommended-city-column">
+      <!--  
+      array of cities setup:
+      miami, las vegas, salt lake city, new york, san francisco, san antonio
+      -->
+      <section class="recommended-destination" id="recommended-destination">
+    
+      <div class="destinations-card" id="recommended destination">
+        <div class="card-header">
+          <h3> SAN FRANCISCO </h3>
+        </div>
+
+        <div class="card-body">
+          <!-- image -->
+          <div class="city-img">
+            <img src="images/sanfrancisco.jpeg" alt="image of San Francisco, California">
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <!-- weather -->
+          <div class="weather" id="weather"> 
+            <h4>IT'S COLD (BRRR)</h4>
+            </div>
+        </div>
+      </div>
+    </div>
+      </section>
+    
+
+      <section class="destinations-row" id="destinations-row">
+      <div class="destinations-card" id="travel-card">
+        <div class="card-header">
+          <h3> LAS VEGAS </h3>
+        </div>
+
+        <div class="card-body">
+          <!-- image -->
+          <div class="city-img">
+            <img src="images/lasvegas.jpeg" alt="image of Las Vegas, Nevada">
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <!-- weather -->
+          <div class="weather" id="weather"> 
+            <h4>IT'S HAWT </h4>
+          </div>
+        </div>
       </div>
 
-      <div class="city-column">
-        <!--  
-        array of cities setup:
-        miami, las vegas, salt lake city, new york, san francisco, san antonio
-        -->
-        <section class="destinations" id="destinations">
-      
-        <div class="destinations-card" id="recommended destination">
-          <div class="card-header">
-            <h3> SAN FRANCISCO </h3>
-          </div>
 
-          <div class="card-body">
-            <!-- image -->
-            <div class="city-img">
-              <img src="images/sanfrancisco.jpeg" alt="image of San Francisco, California">
-            </div>
-          </div>
+      <div class="destinations-card" id="travel-card">
+        <div class="card-header">
+          <h3> MIAMI </h3>
+        </div>
 
-          <div class="card-footer">
-            <!-- weather -->
-            <div class="weather" id="weather"> 
-              <h4>IT'S COLD (BRRR)</h4>
-              </div>
+        <div class="card-body">
+          <!-- image -->
+          <div class="city-img">
+            <img src="images/miami.jpeg" alt="image of Miami, Florida">
           </div>
         </div>
 
-
-        <div class="destinations-card" id="travel-card">
-          <div class="card-header">
-            <h3> LAS VEGAS </h3>
+        <div class="card-footer">
+          <!-- weather -->
+          <div class="weather" id="weather"> 
+            <h4>IT'S HUMID</h4>
           </div>
+        </div>
+      </div>
 
-          <div class="card-body">
-            <!-- image -->
-            <div class="city-img">
-              <img src="images/lasvegas.jpeg" alt="image of Las Vegas, Nevada">
-            </div>
-          </div>
 
-          <div class="card-footer">
-            <!-- weather -->
-            <div class="weather" id="weather"> 
-              <h4>IT'S HAWT </h4>
-            </div>
+      <div class="destinations-card" id="travel-card">
+        <div class="card-header">
+          <h3> SAN ANTONIO </h3>
+        </div>
+
+        <div class="card-body">
+          <!-- image -->
+          <div class="city-img">
+            <img src="images/sanantonio.jpeg" alt="image of San Antonio, Texas">
           </div>
         </div>
 
-
-        <div class="destinations-card" id="travel-card">
-          <div class="card-header">
-            <h3> MIAMI </h3>
+        <div class="card-footer">
+          <!-- weather -->
+          <div class="weather" id="weather"> 
+            <h4> IT'S HAWT </h4>
           </div>
+        </div>
+      </div>
 
-          <div class="card-body">
-            <!-- image -->
-            <div class="city-img">
-              <img src="images/miami.jpeg" alt="image of Miami, Florida">
-            </div>
-          </div>
 
-          <div class="card-footer">
-            <!-- weather -->
-            <div class="weather" id="weather"> 
-              <h4>IT'S HUMID</h4>
-            </div>
+      <div class="destinations-card" id="travel-card">
+        <div class="card-header">
+          <h3> SALT LAKE CITY </h3>
+        </div>
+
+        <div class="card-body">
+          <!-- image -->
+          <div class="city-img">
+            <img src="images/saltlakecity.jpeg" alt="image of Salt Lake City, Utah">
           </div>
         </div>
 
-
-        <div class="destinations-card" id="travel-card">
-          <div class="card-header">
-            <h3> SAN ANTONIO </h3>
+        <div class="card-footer">
+          <!-- weather -->
+          <div class="weather" id="weather"> 
+            <h4>IT'S HAWT</h4>
           </div>
+        </div>
+      </div>
 
-          <div class="card-body">
-            <!-- image -->
-            <div class="city-img">
-              <img src="images/sanantonio.jpeg" alt="image of San Antonio, Texas">
-            </div>
-          </div>
+      <div class="destinations-card" id="travel-card">
+        <div class="card-header">
+          <h3> NEW YORK </h3>
+        </div>
 
-          <div class="card-footer">
-            <!-- weather -->
-            <div class="weather" id="weather"> 
-              <h4> IT'S HAWT </h4>
-            </div>
+        <div class="card-body">
+          <!-- image -->
+          <div class="city-img">
+            <img src="images/newyork.jpeg" alt="image of New York, New York">
           </div>
         </div>
 
-
-        <div class="destinations-card" id="travel-card">
-          <div class="card-header">
-            <h3> SALT LAKE CITY </h3>
-          </div>
-
-          <div class="card-body">
-            <!-- image -->
-            <div class="city-img">
-              <img src="images/saltlakecity.jpeg" alt="image of Salt Lake City, Utah">
-            </div>
-          </div>
-
-          <div class="card-footer">
-            <!-- weather -->
-            <div class="weather" id="weather"> 
-              <h4>IT'S HAWT</h4>
-            </div>
-          </div>
-        </div>
-
-        <div class="destinations-card" id="travel-card">
-          <div class="card-header">
-            <h3> NEW YORK </h3>
-          </div>
-
-          <div class="card-body">
-            <!-- image -->
-            <div class="city-img">
-              <img src="images/newyork.jpeg" alt="image of New York, New York">
-            </div>
-          </div>
-
-          <div class="card-footer">
-            <!-- weather -->
-            <div class="weather" id="weather"> 
-              <h4>IT'S HOT PROBABLY</h4>
-            </div>
+        <div class="card-footer">
+          <!-- weather -->
+          <div class="weather" id="weather"> 
+            <h4>IT'S HOT PROBABLY</h4>
           </div>
         </div>
       </div>
     </div>
+  </div>
+-->
+</section>
 
-    </section>
+  <script src="./js/script.js"></script>
+  <script src="./js/not-public.js"></script>
+  <script type="text/javascript" src="./js/materialize.min.js"></script>
+  <script>
+      var url1="https://maps.googleapis.com/maps/api/js?key=";
+      var url2= keyOne.gm;
+      var url3="&callback=initMap&v=weekly";
+    
+      var scriptEl = document.createElement("script");
+      scriptEl.src = url1 + url2 + url3;
+      document.body.appendChild(scriptEl);
+  </script>
 
-    <script src="./js/script.js"></script>
-    <script src="./js/not-public.js"></script>
-    <script type="text/javascript" src="./js/materialize.min.js"></script>
-    <script>
-        var url1="https://maps.googleapis.com/maps/api/js?key=";
-        var url2= keyOne.gm;
-        var url3="&callback=initMap&v=weekly";
-      
-        var scriptEl = document.createElement("script");
-        scriptEl.src = url1 + url2 + url3;
-        document.body.appendChild(scriptEl);
-    </script>
-  </body>
 
+</body>
 
 </html>

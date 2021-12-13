@@ -11,70 +11,154 @@
 
 body {
     background-image: linear-gradient(to bottom right, yellow, turquoise, blue, purple );
+    font-family: Arial, Helvetica, sans-serif;
+}
+/* begin nav styling */
+
+.nav {
+    background-image: url(../images/hero-bg.png);
+    z-index: 99999;
+    width: 100%;
+    background-size: cover;
+    background-position: 80%;
+    background-attachment: fixed;
+    z-index: 9999;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    justify-content:space-between;
+    
 }
 
+
+.nav a {
+    font-size: 35px;
+    color: gold;
+    font-weight:bolder;
+}
+
+/* end nav styling */
+
+/* begin HERO section */
 .hero {
-    border: 2px solid gold;
     text-align: center;
+    background-image: url(../images/hero-bg.png);
+    background-position: 80%;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    
 }
 
 .hero h4 {
     font-size: 48px;
     text-align: center;
+    margin: 75px 0 50px 0;
+    font-weight: 900;
 }
 
 .hero p {
     font-size: 28px;
     text-align: left;
+    padding: 0 15px;
+    font-weight: 550;
+
 }
 
+/* begin map section */
+.map-column {
+    display: inline-flex;
+    max-width: 990px;
+    background-image: linear-gradient(to right bottom,tan,#723c3c );
+    background-color: #723c3c;
+    margin: 25px 50px 25px 50px;
+    border-radius: 15px;
+    text-align: center;
+    height: 600px;
+    width: 750px;
+    justify-content: center;
+    
+}
+
+#map-title {
+    margin-top: 15px;
+}
+
+#map {
+    margin-top: 15px;
+    border-radius: 15px;
+}
+
+/* end map section */
+
+/* end hero section */
+
+/* start form section */
 .form-input {
-    background: white;
     color: black;
     border-radius: 15px;
-    margin-left: 50px;
-    height: 250px;
+    height: 350px;
+    border: 2px solid var(--secondary-color);
+    display: block;
+    font-size: 20px;
+    color: #024e76;
+    width: 50%;
+    margin-left: 25%;
+    margin-bottom: 15px;
+    background-color: rgba(255, 255, 255, 0.75);
+    text-align: center;
 }
+
+#your-city,
+#your-date,
+#temp {
+    border: 2px solid var(--secondary-color);
+    width: 50%;
+    justify-content: center;
+    margin-left: 25%;
+    border-radius: 15px;
+}
+
+
+#your-city:hover,
+#your-date:hover,
+#temp:hover {
+    background-color: var(--secondary-color);
+}
+
+#your-city:focus,
+#your-date:focus,
+#temp:focus {
+    background-color: var(--secondary-color);
+    outline: none;
+}
+
 
 .form-submit { 
     height: 75px;
-    width: 125px;
+    width: 15%;
     border-radius: 15px;
     font-size: 25px;
+
 }
 
 .form-submit:hover {
     background-image: linear-gradient(to bottom right, yellow, turquoise);
 }
 
-
-.columns,
-.map-column,
-.city-column {
-    display: inline-flex;
-    
-}
-
-.map-column,
-.city-column {
-    max-width: 1200px;
-    background-image: linear-gradient(tan,#723c3c );
-    background-color: #723c3c;
-    justify-content: center;
-    margin: 25px 50px 25px 50px;
-    border-radius: 15px;
-    text-align: center;
-}
-
-.map-column {
-    height: 750px;
-}
+/* end form section */
 
 
 
 .destinations-card {
     max-width: 500px;
-    margin: 15px;
+    height: 600px;
 }
 
 
@@ -133,3 +217,5 @@ border-radius: 15px;
 
 }
 */ 
+
+
