@@ -20,6 +20,7 @@
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sunny Weekend!</title>
   </head>
 
   <body>
@@ -54,12 +55,14 @@
                 <br>
                 We can help!
               </p>
+
+              <h3>Step 1: Click on your current location using our handy-dandy map here!</h3>
             </div>
 
             <!-- M A P Section Begins-->
       <div class="map-column">
         <div id="map-box">
-          <div id="map-title">Step 1: Click on your current location!</div>
+          <div id="map-title">Our handy-dandy interactive map!</div>
           <div id="map" style="height: 500px; width: 500px">
               <!-- <iframe
                   width="600"
@@ -78,8 +81,8 @@
     <section class="form-section col s5">
 
       <div class="form-section-steps col s5">
-        <h3> Steps:</h3>
-        <p> Go ahead and complete our form to get your recommended travel destination!</p>
+        <h3> Step 2:</h3>
+        <p> Finish completing our form here to receive your travel destinations!</p>
       </div>
 
       <div class="input-field form-input form-box">
@@ -97,12 +100,22 @@
       </div>
     </section>
 
+    <!--  array of cities setup:
+    miami, las vegas, salt lake city, new york, san francisco, san antonio -->
     <section class="recommended-destination" id="recommended-destination" class="col s5">
+
+      <div class="recom-descrip col">
+        <h3> Step 3: Travel!
+          <br> 
+          This is our recommended destination for you based on your selected criteria!
+        </h3>
+          <p> If you'd like to learn more about that city click on the image to be redirected to a tourist site!
+              <br>
+              If you'd like alternative destination options, see below for more!
+          </p>
+      </div>
+
     <div class="recommended-city-column">
-      <!--  
-      array of cities setup:
-      miami, las vegas, salt lake city, new york, san francisco, san antonio
-      -->
       <div class="recom-destinations-card" id="recommended destination">
         <div class="recom-card-header">
           <h3> SAN FRANCISCO </h3>
@@ -127,19 +140,22 @@
     
 
       <section class="destinations-row" id="destinations-row">
+
+        <h3 class="destination-descrip">Below are some alternative travel destinations in case the recommended doesn't work out for whatever reason!</h3>
+
       <div class="destinations-card" id="travel-card">
-        <div class="card-header">
+        <div class="row-card-header">
           <h3> LAS VEGAS </h3>
         </div>
 
-        <div class="card-body">
+        <div class="row-card-body">
           <!-- image -->
-          <div class="city-img">
+          <div class="row-city-img">
             <img src="images/lasvegas.jpeg" alt="image of Las Vegas, Nevada">
           </div>
         </div>
 
-        <div class="card-footer">
+        <div class="row-card-footer">
           <!-- weather -->
           <div class="weather" id="weather"> 
             <h4>IT'S HAWT </h4>
@@ -149,18 +165,18 @@
 
 
       <div class="destinations-card" id="travel-card">
-        <div class="card-header">
+        <div class="row-card-header">
           <h3> MIAMI </h3>
         </div>
 
-        <div class="card-body">
+        <div class="row-card-body">
           <!-- image -->
-          <div class="city-img">
+          <div class="row-city-img">
             <img src="images/miami.jpeg" alt="image of Miami, Florida">
           </div>
         </div>
 
-        <div class="card-footer">
+        <div class="row-card-footer">
           <!-- weather -->
           <div class="weather" id="weather"> 
             <h4>IT'S HUMID</h4>
@@ -170,18 +186,18 @@
 
 
       <div class="destinations-card" id="travel-card">
-        <div class="card-header">
+        <div class="row-card-header">
           <h3> SAN ANTONIO </h3>
         </div>
 
-        <div class="card-body">
+        <div class="row-card-body">
           <!-- image -->
-          <div class="city-img">
+          <div class="row-city-img">
             <img src="images/sanantonio.jpeg" alt="image of San Antonio, Texas">
           </div>
         </div>
 
-        <div class="card-footer">
+        <div class="row-card-footer">
           <!-- weather -->
           <div class="weather" id="weather"> 
             <h4> IT'S HAWT </h4>
@@ -191,18 +207,18 @@
 
 
       <div class="destinations-card" id="travel-card">
-        <div class="card-header">
+        <div class="row-card-header">
           <h3> SALT LAKE CITY </h3>
         </div>
 
-        <div class="card-body">
+        <div class="row-card-body">
           <!-- image -->
-          <div class="city-img">
+          <div class="row-city-img">
             <img src="images/saltlakecity.jpeg" alt="image of Salt Lake City, Utah">
           </div>
         </div>
 
-        <div class="card-footer">
+        <div class="row-card-footer">
           <!-- weather -->
           <div class="weather" id="weather"> 
             <h4>IT'S HAWT</h4>
@@ -211,18 +227,18 @@
       </div>
 
       <div class="destinations-card" id="travel-card">
-        <div class="card-header">
+        <div class="row-card-header">
           <h3> NEW YORK </h3>
         </div>
 
-        <div class="card-body">
+        <div class="row-card-body">
           <!-- image -->
-          <div class="city-img">
+          <div class="row-city-img">
             <img src="images/newyork.jpeg" alt="image of New York, New York">
           </div>
         </div>
 
-        <div class="card-footer">
+        <div class="row-card-footer">
           <!-- weather -->
           <div class="weather" id="weather"> 
             <h4>IT'S HOT PROBABLY</h4>
@@ -231,7 +247,6 @@
       </div>
     </div>
   </div>
--->
 </section>
 
   <script src="./js/script.js"></script>
