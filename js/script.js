@@ -1,7 +1,8 @@
-var letsGoBtnEl = $("#lets-go-btn")
-var yourCityEl = $("#your-city")
-var yourDateEl = $("#your-date")
-var tempEl = $("#temp")
+// SR: I commented these out because they were throwing an error which was causing the map to not load properly
+// var letsGoBtnEl = $("#lets-go-btn")
+// var yourCityEl = $("#your-city")
+// var yourDateEl = $("#your-date")
+// var tempEl = $("#temp")
 
 
 
@@ -36,7 +37,7 @@ let newYork = {
 
 let miami = {
     name: "Miami",
-    latLong: { lat: 27.77, lng: -80.22 },
+    latLong: { lat: 25.77, lng: -80.26 },
     temp: "",
     distance: "",
 }
@@ -48,7 +49,7 @@ let lasVegas = {
     distance: "",
 }
 
-let sixCities = [sanFrancisco, saltLakeCity, sanAntonio, newYork, miami, lasVegas]
+var sixCities = [sanFrancisco, saltLakeCity, sanAntonio, newYork, miami, lasVegas]
 
 // weather forecast call to get 8-day forecast for sixCities array
 var APIKey = "be713046da2f1520bb5a2702cd2e8948";
@@ -130,7 +131,7 @@ var cityIndexByTemperatureArray = []
 function initMap() {
     const middle = { lat: 41, lng: -98 };
     const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 5,
+      zoom: 4,
       center: middle,
     });
   
@@ -141,13 +142,67 @@ function initMap() {
         });
     }      
     // This event listener calls addMarker() when the map is clicked.
-    // google.maps.event.addListener(map, "click", (evt) => {
-    //   addMarker(evt.latLng, map);
-    // });
+    google.maps.event.addListener(map, "click", (evt) => {
+      addMarker(evt.latLng, map);
+    });
     // ~~~ keep this event listener, but turn it off after the user clicks the map
+
     
-  }
-  
+}
+
+// Adds a marker to the map.
+function addMarker(location, map) {
+    // Add the marker at the clicked location, and add the next-available label
+    // from the array of alphabetical characters.
+    new google.maps.Marker({
+      position: location,
+      label: "A",
+      map: map,
+    });
+  }  
+
+var getDistance2 = function(){
+    // initialize services
+    // const geocoder = new google.maps.Geocoder();
+    const service = new google.maps.DistanceMatrixService();
+
+    // build request
+    const chicagoString = "Chicago, Illinois";
+    var originLocationsArray = [];
+    var destinationLocationsArray = [];
+    destinationLocationsArray[0] = chicagoString;
+    for ( i = 0 ; i < sixCities.length ; i++ ) {
+        originLocationsArray[i] = sixCities[i].latLong;
+        // destinationLocationsArray[i] = chicagoString;
+    }
+    console.log(originLocationsArray);
+    const request = {
+        origins: originLocationsArray,
+        destinations: destinationLocationsArray,
+        travelMode: google.maps.TravelMode.DRIVING,
+        unitSystem: google.maps.UnitSystem.METRIC,
+        avoidHighways: false,
+        avoidTolls: false,
+    };
+    
+    // get distance matrix response
+    service.getDistanceMatrix(request).then((response) => {
+        // put response
+        console.log(JSON.stringify(
+            response,
+            null,
+            2
+        ));
+        console.log(response);
+        var receivedDistanceInformation = response;
+        console.log(receivedDistanceInformation);
+        for ( i = 0 ; i < sixCities.length ; i++ ) {
+            sixCities[0].distance = receivedDistanceInformation.rows[i].elements[0].distance;
+        }
+    })
+}
+        
+
 // input 
 // accept click from map 
     // criteria:
