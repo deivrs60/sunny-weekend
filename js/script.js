@@ -72,12 +72,18 @@ for (var i = 0; i < sixCities.length; i++) {
                         var temp = Math.round((forecastDay.main.temp - 273.15) * 1.80 + 32);
                         console.log(temp)
 
+                        // populate temp in sixCities array
+                        sixCities[i].temp = temp
+
+
                     }
                 })
         }
     })
-
 }
+
+
+
 
 // compare criteria to the weather
 //1. what's closest? yourCityEl input compared to sixCities array which contains lon/lat info
@@ -131,8 +137,8 @@ var cityIndexByTemperatureArray = []
 function initMap() {
     const middle = { lat: 41, lng: -98 };
     const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 3,
-      center: middle,
+        zoom: 3,
+        center: middle,
     });
 
     for (i = 0; i < sixCities.length; i++) {
@@ -143,14 +149,14 @@ function initMap() {
     }
     // This event listener calls addMarker() when the map is clicked.
     google.maps.event.addListener(map, "click", (evt) => {
-      addMarker(evt.latLng, map);
-      console.log(evt.latLng);
-      console.log(evt.latLng.lat());
-      startLocation.latLong.lat = evt.latLng.lat();
-      console.log(evt.latLng.lng());
-      startLocation.latLong.lng = evt.latLng.lng();
-      console.log(startLocation);
-      getDistance2();
+        addMarker(evt.latLng, map);
+        console.log(evt.latLng);
+        console.log(evt.latLng.lat());
+        startLocation.latLong.lat = evt.latLng.lat();
+        console.log(evt.latLng.lng());
+        startLocation.latLong.lng = evt.latLng.lng();
+        console.log(startLocation);
+        getDistance2();
     });
     // ~~~ keep this event listener, but turn it off after the user clicks the map
 
@@ -163,9 +169,9 @@ function addMarker(location, map) {
     // from the array of alphabetical characters.
     console.log(location);
     new google.maps.Marker({
-      position: location,
-      label: "U",
-      map: map,
+        position: location,
+        label: "U",
+        map: map,
     });
 }
 
@@ -178,7 +184,7 @@ var getDistance2 = function () {
     var originLocationsArray = [];
     var destinationLocationsArray = [];
     destinationLocationsArray[0] = startLocation.latLong;
-    for ( i = 0 ; i < sixCities.length ; i++ ) {
+    for (i = 0; i < sixCities.length; i++) {
         originLocationsArray[i] = sixCities[i].latLong;
         // destinationLocationsArray[i] = chicagoString;
     }
