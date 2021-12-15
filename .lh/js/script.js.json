@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 26,
+            "activePatchIndex": 31,
             "patches": [
                 {
                     "date": 1639110074774,
@@ -112,6 +112,26 @@
                 {
                     "date": 1639325279561,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -193,8 +193,13 @@\n             null,\n             2\n         ));\n         console.log(response);\n+        var receivedDistanceInformation = response;\n+        console.log(receivedDistanceInformation);\n+        for ( i = 0 ; i < sixCities.length ; i++ ) {\n+            sixCities[0].distance = receivedDistanceInformation.rows[i].elements[0].distance;\n+        }\n     })\n }\n         \n \n"
+                },
+                {
+                    "date": 1639540236557,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,9 +53,9 @@\n \n // weather forecast call to get 8-day forecast for sixCities array\n var APIKey = \"be713046da2f1520bb5a2702cd2e8948\";\n for (var i = 0; i < sixCities.length; i++) {\n-    var forecast = \"https://api.openweathermap.org/data/2.5/forecast?q=\" + sixCities[i] + \"&appid=\" + APIKey;\n+    var forecast = \"https://api.openweathermap.org/data/2.5/forecast?q=\" + sixCities[i].name + \"&appid=\" + APIKey;\n     fetch(forecast).then(function (response) {\n         if (response.ok) {\n             response.json()\n                 .then(function (data) {\n"
+                },
+                {
+                    "date": 1639540624144,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,11 +63,11 @@\n                     //loop thru day1 to day 8 of forecast\n                     for (var i = 0; i < 7; i++) {\n                         //date\n                         var forecastDay = data.list[i * 8]  //data given in 3hrs,multiply by 8 to get 24 hrs\n-                        var date = new Date(parseInt(forecastDay.dt) * 1000)\n-                        var formatDate = moment(date).format(\"MMM D, YYYY\")\n-                        console.log(forecastDay.dt, \"forecastDay\" + i, date, formatDate)\n+                        // var date = new Date(parseInt(forecastDay.dt) * 1000)\n+                        // var formatDate = moment(date).format(\"MMM D, YYYY\")\n+                        // console.log(forecastDay.dt, \"forecastDay\" + i, date, formatDate)\n \n                         //temp\n                         var temp = Math.round((forecastDay.main.temp - 273.15) * 1.80 + 32);\n                         console.log(temp)\n"
+                },
+                {
+                    "date": 1639540658495,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,9 +62,9 @@\n                     //console.log(data)\n                     //loop thru day1 to day 8 of forecast\n                     for (var i = 0; i < 7; i++) {\n                         //date\n-                        var forecastDay = data.list[i * 8]  //data given in 3hrs,multiply by 8 to get 24 hrs\n+                        // var forecastDay = data.list[i * 8]  //data given in 3hrs,multiply by 8 to get 24 hrs\n                         // var date = new Date(parseInt(forecastDay.dt) * 1000)\n                         // var formatDate = moment(date).format(\"MMM D, YYYY\")\n                         // console.log(forecastDay.dt, \"forecastDay\" + i, date, formatDate)\n \n"
+                },
+                {
+                    "date": 1639540715323,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,9 +62,9 @@\n                     //console.log(data)\n                     //loop thru day1 to day 8 of forecast\n                     for (var i = 0; i < 7; i++) {\n                         //date\n-                        // var forecastDay = data.list[i * 8]  //data given in 3hrs,multiply by 8 to get 24 hrs\n+                        var forecastDay = data.list[i * 8]  //data given in 3hrs,multiply by 8 to get 24 hrs\n                         // var date = new Date(parseInt(forecastDay.dt) * 1000)\n                         // var formatDate = moment(date).format(\"MMM D, YYYY\")\n                         // console.log(forecastDay.dt, \"forecastDay\" + i, date, formatDate)\n \n"
+                },
+                {
+                    "date": 1639540813359,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,10 +68,10 @@\n                         // var formatDate = moment(date).format(\"MMM D, YYYY\")\n                         // console.log(forecastDay.dt, \"forecastDay\" + i, date, formatDate)\n \n                         //temp\n-                        var temp = Math.round((forecastDay.main.temp - 273.15) * 1.80 + 32);\n-                        console.log(temp)\n+                        // var temp = Math.round((forecastDay.main.temp - 273.15) * 1.80 + 32);\n+                        // console.log(temp)\n \n                     }\n                 })\n         }\n"
                 }
             ],
             "date": 1639110074774,
