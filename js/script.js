@@ -64,13 +64,13 @@ for (var i = 0; i < sixCities.length; i++) {
                     for (var i = 0; i < 5; i++) {
                         //date
                         var forecastDay = data.list[i * 8]  //data given in 3hrs,multiply by 8 to get 24 hrs
-                        // var date = new Date(parseInt(forecastDay.dt) * 1000)
-                        // var formatDate = moment(date).format("MMM D, YYYY")
-                        // console.log(forecastDay.dt, "forecastDay" + i, date, formatDate)
+                        var date = new Date(parseInt(forecastDay.dt) * 1000)
+                        var formatDate = moment(date).format("MMM D, YYYY")
+                        console.log(forecastDay.dt, "forecastDay" + i, date, formatDate)
 
                         //temp
-                        // var temp = Math.round((forecastDay.main.temp - 273.15) * 1.80 + 32);
-                        // console.log(temp)
+                        var temp = Math.round((forecastDay.main.temp - 273.15) * 1.80 + 32);
+                        console.log(temp)
 
                     }
                 })
