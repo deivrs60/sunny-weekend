@@ -83,7 +83,6 @@ body {
     text-align: left;
     padding: 0 15px;
     font-weight: 550;
-
 }
 
 /* begin map section */
@@ -205,6 +204,7 @@ body {
     font-size: 35px;
     padding-top: 60px;
 }
+
 .recom-destinations-card {
     max-width: 45%;
     height: 600px;
@@ -486,5 +486,8 @@ padding-top: 6px;
         margin-right: 15%;
     }
 
+.row-city-img img:hover {
+    cursor: pointer;
 }
+
 
