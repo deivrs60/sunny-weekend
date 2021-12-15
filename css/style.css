@@ -56,14 +56,13 @@ body {
     
 }
 
-.hero .row {
+.hero {
     display: inline-flex;
-    flex-wrap: wrap;
     justify-content: space-evenly;
-    width: 100%;
+    flex: wrap;
 }
 
-.row .col.s6 {
+.col.s6 {
     margin-left: 0;
 }
 
@@ -77,7 +76,6 @@ body {
     display: inline-flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    width: 100%;
 }
 
 .hero p {
@@ -85,7 +83,6 @@ body {
     text-align: left;
     padding: 0 15px;
     font-weight: 550;
-
 }
 
 /* begin map section */
@@ -186,7 +183,7 @@ body {
 /* begin recommended destination's card section */
 
 .recommended-destination {
-    background-image: linear-gradient(to bottom right, gold, yellow);
+    background-image: linear-gradient(to bottom right, #fffde7, #fdd835, #ffd600, #fbc025, #f9a825);
     display: inline-flex;
     justify-content: center;
     margin-top: 5%;
@@ -207,6 +204,7 @@ body {
     font-size: 35px;
     padding-top: 60px;
 }
+
 .recom-destinations-card {
     max-width: 45%;
     height: 600px;
@@ -255,21 +253,28 @@ border-radius: 15px;
 /* end recommended card destination's section */
 
 /* begin destinations row sections */
+
+.destination-descrip {
+    color: khaki;
+    text-align: center;
+}
 .destinations-row {
     background-image: linear-gradient(to right bottom,tan,#723c3c);
     display: inline-flex;
-    justify-content: space-evenly;
     flex-wrap: wrap;
+    justify-content: space-evenly;
     padding-top: 5%;
     border: 2px solid gold;
     width: 100%;
     background-size: cover;
 }
-
+.destination-descrip {
+    display: block;
+}
 .row-card-header,
 .row-card-body,
 .row-card-footer {
-    width: 400px;
+    width: 350px;
     border: 2px solid black;
 }
 
@@ -295,10 +300,11 @@ border-radius: 15px;
 }
 
 .row-city-img img {
-max-width: 350px;
-max-height:350px;
+max-width: 275px;
+max-height:275px;
 border-radius: 15px;
-margin-left: 6%;
+margin-left: 10.5%;
+padding-top: 6px;
 
 } 
 
@@ -306,5 +312,182 @@ margin-left: 6%;
     cursor: pointer;
 }
 
+@media screen and (max-width: 1385px) {
+    .row .col.s6 {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding-left: 2%;
+        text-align: center;
+    }
+
+    .row .col.s6 h3 {
+        font-weight: 700;
+        font-size: 32px;
+    }
+
+    .row .col.s6 p {
+        font-weight: 500;
+        font-size: 26px;
+        text-align: center;
+    }
+
+    .recom-destinations-card {
+        height: 150%;
+        margin-bottom: 5%;
+    }
+    .recom-card-header,
+    .recom-card-body,
+    .recom-card-footer {
+        width: 150%;
+        margin-right: 2%;
+
+    }
+
+    .recom-city-img img {
+        width: 70%;
+        height: 100%;
+    }
+    
+    .row-card-header,
+    .row-card-body,
+    .row-card-footer {
+        width: 90%;
+        align-items: center;
+    }
+
+    .row-card-header h3,
+    .row-card-footer h4 {
+        font-size: 27px;
+    }
+
+
+    .row-city-img img {
+        width: 70%;
+        height: 100%;
+    }
+
+}
+
+@media screen and (max-width: 1198px) {
+
+    .description.col.s6{
+        margin-left: 25%;
+    }
+
+    .form-section-steps.col.s5 {
+        text-align: center;
+    }
+
+    #lets-go-btn {
+        width: 75%;
+        height: 50px;
+        margin-top: 2%;
+    }
+
+}
+
+@media screen and (max-width: 980px) {
+    .destination-descrip h3 {
+        margin: auto;
+    }
+
+    .form-section-steps.col.s5 h3 {
+        font-size: 36px;
+    }
+
+    .form-section-steps.col.s5 p {
+        font-size: 26px;
+    }
+
+    #lets-go-btn {
+        width: 70%;
+        margin-top: 2%;
+        height: 50px;
+    }
+
+    .input-field.form-input.form-box{
+        width: 75%;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    #logo-container {
+        font-size: 25px;
+        
+    }
+
+    .description.col.s6 h3 {
+        font-size: 28px;
+    }
+    .description.col.s6 p {
+        font-size:  22px;
+    }
+    
+    #lets-go-btn {
+        width: 75%;
+    }
+
+    .recom-destinations-card {
+        height: 200%;
+        margin-top: 5%;
+    }
+
+    .recom-card-header h3,
+    .recom-card-footer h4 {
+        font-size: 25px;
+    }
+
+    .recom-descrip.col h3 {
+        font-size: 30px;
+        padding-top: 0;
+        justify-content: center;
+        align-content: center;
+        margin-left: 5%;
+    }
+
+    .recom-descript.col
+
+    .recom-descrip.col p {
+        margin-left: 5%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #logo-container {
+        font-size: 22px;
+    }
+
+    .map-column {
+        width: 95%;
+    }
+
+    #map {
+        height: 75%;
+        width: 75%;
+
+    }
+
+    .input-field.form-input.form-box{
+        width: 95%;
+    }
+
+    #lets-go-btn {
+        width: 100%;
+    }
+
+    .recom-descrip.col,
+    .recommended-city-column {
+        width: 100%;
+    }
+
+    .recommended-city-column {
+        margin-right: 15%;
+    }
+
+.row-city-img img:hover {
+    cursor: pointer;
+}
 
 

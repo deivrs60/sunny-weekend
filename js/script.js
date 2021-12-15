@@ -1,8 +1,8 @@
 // SR: I commented these out because they were throwing an error which was causing the map to not load properly
-// var letsGoBtnEl = $("#lets-go-btn")
-// var yourCityEl = $("#your-city")
-// var yourDateEl = $("#your-date")
-// var tempEl = $("#temp")
+//var letsGoBtnEl = $("#lets-go-btn")
+//var yourCityEl = $("#your-city")
+//var yourDateEl = $("#your-date")
+//var tempEl = $("#temp")
 
 
 
@@ -59,9 +59,9 @@ for (var i = 0; i < sixCities.length; i++) {
         if (response.ok) {
             response.json()
                 .then(function (data) {
-                    //console.log(data)
+                    console.log(data)
                     //loop thru day1 to day 8 of forecast
-                    for (var i = 0; i < 7; i++) {
+                    for (var i = 0; i < 5; i++) {
                         //date
                         var forecastDay = data.list[i * 8]  //data given in 3hrs,multiply by 8 to get 24 hrs
                         // var date = new Date(parseInt(forecastDay.dt) * 1000)
@@ -116,8 +116,8 @@ function getDistance(yourCityEl) {
 
 }
 
-    //2. weather criteria > 80degrees
-    // function to see if temp in each city is greater than 80, if yes, have different background or some marker
+//2. weather criteria > 80degrees
+// function to see if temp in each city is greater than 80, if yes, have different background or some marker
 
 
 
@@ -134,13 +134,13 @@ function initMap() {
       zoom: 3,
       center: middle,
     });
-  
-    for ( i = 0 ; i < sixCities.length ; i++ ) {
+
+    for (i = 0; i < sixCities.length; i++) {
         new google.maps.Marker({
-          position: sixCities[i].latLong,
-          map: map,
+            position: sixCities[i].latLong,
+            map: map,
         });
-    }      
+    }
     // This event listener calls addMarker() when the map is clicked.
     google.maps.event.addListener(map, "click", (evt) => {
       addMarker(evt.latLng, map);
@@ -154,7 +154,7 @@ function initMap() {
     });
     // ~~~ keep this event listener, but turn it off after the user clicks the map
 
-    
+
 }
 
 // Adds a marker to the map.
@@ -167,9 +167,9 @@ function addMarker(location, map) {
       label: "U",
       map: map,
     });
-  }  
+}
 
-var getDistance2 = function(){
+var getDistance2 = function () {
     // initialize services
     // const geocoder = new google.maps.Geocoder();
     const service = new google.maps.DistanceMatrixService();
@@ -191,7 +191,7 @@ var getDistance2 = function(){
         avoidHighways: false,
         avoidTolls: false,
     };
-    
+
     // get distance matrix response
     service.getDistanceMatrix(request).then((response) => {
         // put response
@@ -203,12 +203,12 @@ var getDistance2 = function(){
         console.log(response);
         var receivedDistanceInformation = response;
         console.log(receivedDistanceInformation);
-        for ( i = 0 ; i < sixCities.length ; i++ ) {
+        for (i = 0; i < sixCities.length; i++) {
             sixCities[0].distance = receivedDistanceInformation.rows[i].elements[0].distance;
         }
     })
 }
-        
+
 
 // input 
 // accept click from map 
