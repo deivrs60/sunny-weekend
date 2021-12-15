@@ -54,7 +54,7 @@ var sixCities = [sanFrancisco, saltLakeCity, sanAntonio, newYork, miami, lasVega
 // weather forecast call to get 8-day forecast for sixCities array
 var APIKey = "be713046da2f1520bb5a2702cd2e8948";
 for (var i = 0; i < sixCities.length; i++) {
-    var forecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + sixCities[i] + "&appid=" + APIKey;
+    var forecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + sixCities[i].name + "&appid=" + APIKey;
     fetch(forecast).then(function (response) {
         if (response.ok) {
             response.json()
@@ -64,13 +64,13 @@ for (var i = 0; i < sixCities.length; i++) {
                     for (var i = 0; i < 7; i++) {
                         //date
                         var forecastDay = data.list[i * 8]  //data given in 3hrs,multiply by 8 to get 24 hrs
-                        var date = new Date(parseInt(forecastDay.dt) * 1000)
-                        var formatDate = moment(date).format("MMM D, YYYY")
-                        console.log(forecastDay.dt, "forecastDay" + i, date, formatDate)
+                        // var date = new Date(parseInt(forecastDay.dt) * 1000)
+                        // var formatDate = moment(date).format("MMM D, YYYY")
+                        // console.log(forecastDay.dt, "forecastDay" + i, date, formatDate)
 
                         //temp
-                        var temp = Math.round((forecastDay.main.temp - 273.15) * 1.80 + 32);
-                        console.log(temp)
+                        // var temp = Math.round((forecastDay.main.temp - 273.15) * 1.80 + 32);
+                        // console.log(temp)
 
                     }
                 })
