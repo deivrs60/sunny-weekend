@@ -1,6 +1,5 @@
 // SR: I commented these out because they were throwing an error which was causing the map to not load properly
-//var letsGoBtnEl = $("#lets-go-btn")
-//var yourCityEl = $("#your-city")
+var letsGoFormEl = $("#form")
 var yourDateEl = $("#your-date")
 var tempEl = $("#temp")
 
@@ -50,45 +49,62 @@ let lasVegas = {
 }
 
 var sixCities = [sanFrancisco, saltLakeCity, sanAntonio, newYork, miami, lasVegas]
-
+// put code in a function, on click, grab the input and run the function
 // weather forecast call to get 8-day forecast for sixCities array
 var APIKey = "be713046da2f1520bb5a2702cd2e8948";
-for (var i = 0; i < sixCities.length; i++) {
-    var forecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + sixCities[i].name + "&appid=" + APIKey;
-    fetch(forecast).then(function (response) {
-        if (response.ok) {
-            response.json()
-                .then(function (data) {
-                    console.log(data)
-                    //loop thru day1 to day 8 of forecast
-                    for (var i = 0; i < 5; i++) {
-                        //date
-                        var forecastDay = data.list[i * 8]  //data given in 3hrs,multiply by 8 to get 24 hrs
-                        var date = new Date(parseInt(forecastDay.dt) * 1000)
-                        var formatDate = moment(date).format("MMM D, YYYY")
-                        console.log(forecastDay.dt, "forecastDay" + i, date, formatDate)
+function getTemp(event) {
+    event.preventDefault()
+    var yourDateEl = $("#your-date").val()
+    console.log(yourDateEl)
+    for (var i = 0; i < sixCities.length; i++) {
+        var forecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + sixCities[i].name + "&appid=" + APIKey;
+        fetch(forecast).then(function (response) {
+            if (response.ok) {
+                response.json()
+                    .then(function (data) {
+                        console.log(data)
 
-                        //temp
-                        var temp = Math.round((forecastDay.main.temp - 273.15) * 1.80 + 32);
-                        console.log(temp)
-
-                        // populate temp in sixCities array
-                        sixCities[i].temp = temp
+                        //loop thru day1 to day 8 of forecast
+                        for (var i = 0; i < 5; i++) {
+                            //date
 
 
-                    }
-                })
-        }
-    })
+                            var forecastDay = data.list[i * 8]  //data given in 3hrs,multiply by 8 to get 24 hrs
+                            var date = new Date(parseInt(forecastDay.dt) * 1000)
+                            var formatDate = moment(date).format("MMM D, YYYY")
+                            console.log(forecastDay.dt, "forecastDay" + i, date, formatDate)
+
+
+                            //temp
+                            var temp = Math.round((forecastDay.main.temp - 273.15) * 1.80 + 32);
+                            console.log(temp)
+
+                            // populate temp in sixCities array
+                            sixCities[i].temp = temp
+
+
+                        }
+                    })
+            }
+        })
+    }
 }
 
+
+
+
+
+// then populate temp value for sixCities array
+
+
+
+// then compare temp values to input temp
+
+
+
+
+
 // compare criteria to the weather
-
-
-
-
-
-
 //1. what's closest? yourCityEl input compared to sixCities array which contains lon/lat info
 // get a diff API call to get distance and then sort closest to furthest
 function getDistance(yourCityEl) {
@@ -219,6 +235,8 @@ var getDistance2 = function () {
 }
 
 
+letsGoFormEl.on("submit", getTemp)
+
 // input 
 // accept click from map 
     // criteria:
@@ -255,3 +273,5 @@ var getDistance2 = function () {
                         // - how many cities are forecasted to meet the weather criteria on the entered date
                         // - cities that meet the criteria in order of distance (cities that don't meet the criteria aren't shown; if no city meets the criteria, no cities are shown and user receives message "no cities meet your criteria on the date selected")
                         // - offer to run another query
+
+
