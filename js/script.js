@@ -1,8 +1,8 @@
 // SR: I commented these out because they were throwing an error which was causing the map to not load properly
 //var letsGoBtnEl = $("#lets-go-btn")
 //var yourCityEl = $("#your-city")
-//var yourDateEl = $("#your-date")
-//var tempEl = $("#temp")
+var yourDateEl = $("#your-date")
+var tempEl = $("#temp")
 
 
 
@@ -82,10 +82,13 @@ for (var i = 0; i < sixCities.length; i++) {
     })
 }
 
-
-
-
 // compare criteria to the weather
+
+
+
+
+
+
 //1. what's closest? yourCityEl input compared to sixCities array which contains lon/lat info
 // get a diff API call to get distance and then sort closest to furthest
 function getDistance(yourCityEl) {
