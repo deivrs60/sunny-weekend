@@ -55,35 +55,46 @@ var APIKey = "be713046da2f1520bb5a2702cd2e8948";
 function getTemp(event) {
     event.preventDefault()
     var yourDateEl = $("#your-date").val()
-    console.log(yourDateEl)
+    var yourDateFormat = moment(yourDateEl).format("MMM D, YYYY")
+
     for (var i = 0; i < sixCities.length; i++) {
         var forecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + sixCities[i].name + "&appid=" + APIKey;
         fetch(forecast).then(function (response) {
             if (response.ok) {
                 response.json()
                     .then(function (data) {
-                        console.log(data)
+
 
                         //loop thru day1 to day 8 of forecast
                         for (var i = 0; i < 5; i++) {
                             //date
 
 
+
                             var forecastDay = data.list[i * 8]  //data given in 3hrs,multiply by 8 to get 24 hrs
                             var date = new Date(parseInt(forecastDay.dt) * 1000)
                             var formatDate = moment(date).format("MMM D, YYYY")
-                            console.log(forecastDay.dt, "forecastDay" + i, date, formatDate)
+                            //console.log(forecastDay.dt, "forecastDay" + i, date, formatDate)
+                            if (yourDateFormat == formatDate) {
+                                //temp
+                                var temp = Math.round((forecastDay.main.temp - 273.15) * 1.80 + 32);
+                                console.log(temp)
+
+                                // populate temp in sixCities array
+                                sixCities[i].temp = temp
 
 
-                            //temp
-                            var temp = Math.round((forecastDay.main.temp - 273.15) * 1.80 + 32);
-                            console.log(temp)
 
-                            // populate temp in sixCities array
-                            sixCities[i].temp = temp
+
+
+                            }
+
+
+                            console.log(sixCities[i])
 
 
                         }
+
                     })
             }
         })
