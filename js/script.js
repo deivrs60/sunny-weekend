@@ -1,11 +1,4 @@
-// SR: I commented these out because they were throwing an error which was causing the map to not load properly
-//var letsGoBtnEl = $("#lets-go-btn")
-//var yourCityEl = $("#your-city")
-//var yourDateEl = $("#your-date")
-//var tempEl = $("#temp")
-
-
-
+var letsGoButtonEl = document.getElementById("lets-go-btn");
 
 var sanFrancisco = {
     name: "San Francisco",
@@ -51,6 +44,18 @@ let lasVegas = {
 
 var sixCities = [sanFrancisco, saltLakeCity, sanAntonio, newYork, miami, lasVegas]
 
+var startLocation = {
+    latLong: { lat: "", lng: "" },
+}
+var desiredTemp = "";
+var desiredDate = {
+    dateAsString: "",
+    dateWithHour: "",
+    dateAsNumber: "",
+};
+var cityIndexByDistanceArray = [];
+var cityIndexByTemperatureArray = [];
+
 // weather forecast call to get 8-day forecast for sixCities array
 var APIKey = "be713046da2f1520bb5a2702cd2e8948";
 for (var i = 0; i < sixCities.length; i++) {
@@ -59,31 +64,26 @@ for (var i = 0; i < sixCities.length; i++) {
         if (response.ok) {
             response.json()
                 .then(function (data) {
-                    console.log(data)
+                    //console.log(data)
                     //loop thru day1 to day 8 of forecast
                     for (var i = 0; i < 5; i++) {
                         //date
                         var forecastDay = data.list[i * 8]  //data given in 3hrs,multiply by 8 to get 24 hrs
                         var date = new Date(parseInt(forecastDay.dt) * 1000)
                         var formatDate = moment(date).format("MMM D, YYYY")
-                        console.log(forecastDay.dt, "forecastDay" + i, date, formatDate)
+                        //console.log(forecastDay.dt, "forecastDay" + i, date, formatDate)
 
                         //temp
                         var temp = Math.round((forecastDay.main.temp - 273.15) * 1.80 + 32);
-                        console.log(temp)
+                        //console.log(temp)
 
                         // populate temp in sixCities array
                         sixCities[i].temp = temp
-
-
                     }
                 })
         }
     })
 }
-
-
-
 
 // compare criteria to the weather
 //1. what's closest? yourCityEl input compared to sixCities array which contains lon/lat info
@@ -115,24 +115,11 @@ function getDistance(yourCityEl) {
                     console.log(lat, lon)
                 })
             }
-
         })
-
-
-
 }
 
 //2. weather criteria > 80degrees
 // function to see if temp in each city is greater than 80, if yes, have different background or some marker
-
-
-
-var startLocation = {
-    latLong: { lat: "", lng: "" },
-}
-
-var cityIndexByDistanceArray = []
-var cityIndexByTemperatureArray = []
 
 function initMap() {
     const middle = { lat: 41, lng: -98 };
@@ -159,8 +146,6 @@ function initMap() {
         getDistance2();
     });
     // ~~~ keep this event listener, but turn it off after the user clicks the map
-
-
 }
 
 // Adds a marker to the map.
@@ -217,7 +202,7 @@ var getDistance2 = function () {
 
 
 // input 
-// accept click from map 
+// x accept click from map 
     // criteria:
     // accepted date 
         // set up calendar input?
@@ -225,8 +210,10 @@ var getDistance2 = function () {
     // accepted minimum temperature
     // modal (box on page?)
 
-
-
+var acceptFormData = function(formData) {
+    formData.preventDefault();
+    console.log(formData);
+}
 
 // weather 
     // get weather for each city on the specified date
@@ -243,12 +230,11 @@ var getDistance2 = function () {
     // de-emphasize non-recommended 
 
 
-
-// DAVID AND JOANNE: DOES THIS PROCESS MAKE SENSE FOR USER EXPERIENCE?
-                    //user opens page
-                    //step 1: enter current location, this brings up a modal for step 2
-                    //step 2: enter date and minimum temperature desired
-                    //webpage shows:
-                        // - how many cities are forecasted to meet the weather criteria on the entered date
-                        // - cities that meet the criteria in order of distance (cities that don't meet the criteria aren't shown; if no city meets the criteria, no cities are shown and user receives message "no cities meet your criteria on the date selected")
-                        // - offer to run another query
+letsGoButtonEl.addEventListener("click", function(evt){
+    evt.preventDefault();
+    console.log(evt);
+    desiredTemp = evt.target.form[1].value;
+    desiredDate.dateAsString = evt.target.form[0].value;
+    desiredDate.dateWithHour = evt.target.form[0].valueAsDate;
+    desiredDate.dateAsNumber = evt.target.form[0].valueAsNumber;
+});
