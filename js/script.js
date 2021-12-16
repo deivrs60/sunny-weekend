@@ -1,8 +1,7 @@
 // SR: I commented these out because they were throwing an error which was causing the map to not load properly
-//var letsGoBtnEl = $("#lets-go-btn")
-//var yourCityEl = $("#your-city")
-//var yourDateEl = $("#your-date")
-//var tempEl = $("#temp")
+var letsGoBtnEl = $("#lets-go-btn")
+var yourDateEl = $("#your-date")
+var tempEl = $("#temp")
 
 
 
@@ -68,6 +67,7 @@ for (var i = 0; i < sixCities.length; i++) {
                         var formatDate = moment(date).format("MMM D, YYYY")
                         console.log(forecastDay.dt, "forecastDay" + i, date, formatDate)
 
+
                         //temp
                         var temp = Math.round((forecastDay.main.temp - 273.15) * 1.80 + 32);
                         console.log(temp)
@@ -82,138 +82,168 @@ for (var i = 0; i < sixCities.length; i++) {
     })
 }
 
+// forecast call for daily weather
+
+
+var forecast = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=" + part + "&appid=" + APIKey;
+fetch(forecast).then(function (response) {
+    if (response.ok) {
+        response.json()
+            .then(function (data) {
+                var lat = data.coord.lat;
+                var lon = data.coord.lon;
+                var today = new Date();
+                // trying to get integer value of the day
+                var todayDate = new Date().getDate()
+                console.log(todayDate)
+                // then get the same for the date the user input
+                var inputDate = yourDateEl.val()
+                var userDate = new Date(inputDate).getDate()
+                // get the difference between the 2 integers
+                var diffDate = userDate - todayDate
+                // use diffDate as the index to search ahead in the days
+                //if diffDate = 0, get today's temp, if = 1 get Day1 temp, if = 2......  if =4 get Day 5 temp
+
+
+                // then populate temp value for sixCities array
 
 
 
-// compare criteria to the weather
-//1. what's closest? yourCityEl input compared to sixCities array which contains lon/lat info
-// get a diff API call to get distance and then sort closest to furthest
-function getDistance(yourCityEl) {
-
-    // query url to make the API call 
-    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + yourCityEl + "&appid=" + APIKey;
-
-    // make a get request to url
-    fetch(queryURL)
-        .then(function (response) {
-            //request successful
-            if (response.ok) {
-
-                response.json().then(function (data) {
-                    //console.log(data)
-                    // get date using moment js
-                    var date = moment().format(" MM/DD/YYYY");
-                    console.log(date)
-
-                    // temp in degreeF
-                    var temp = Math.round((data.main.temp - 273.15) * 1.80 + 32);
-                    console.log(temp)
-
-                    // lat and lon
-                    var lat = data.coord.lat;
-                    var lon = data.coord.lon;
-                    console.log(lat, lon)
-                })
-            }
-
-        })
+                // then compare temp values to input temp
 
 
 
-}
-
-//2. weather criteria > 80degrees
-// function to see if temp in each city is greater than 80, if yes, have different background or some marker
 
 
+                // compare criteria to the weather
+                //1. what's closest? yourCityEl input compared to sixCities array which contains lon/lat info
+                // get a diff API call to get distance and then sort closest to furthest
+                function getDistance(yourCityEl) {
 
-var startLocation = {
-    latLong: { lat: "", lng: "" },
-}
+                    // query url to make the API call 
+                    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + yourCityEl + "&appid=" + APIKey;
 
-var cityIndexByDistanceArray = []
-var cityIndexByTemperatureArray = []
+                    // make a get request to url
+                    fetch(queryURL)
+                        .then(function (response) {
+                            //request successful
+                            if (response.ok) {
 
-function initMap() {
-    const middle = { lat: 41, lng: -98 };
-    const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 3,
-        center: middle,
-    });
+                                response.json().then(function (data) {
+                                    //console.log(data)
+                                    // get date using moment js
+                                    var date = moment().format(" MM/DD/YYYY");
+                                    console.log(date)
 
-    for (i = 0; i < sixCities.length; i++) {
-        new google.maps.Marker({
-            position: sixCities[i].latLong,
-            map: map,
-        });
-    }
-    // This event listener calls addMarker() when the map is clicked.
-    google.maps.event.addListener(map, "click", (evt) => {
-        addMarker(evt.latLng, map);
-        console.log(evt.latLng);
-        console.log(evt.latLng.lat());
-        startLocation.latLong.lat = evt.latLng.lat();
-        console.log(evt.latLng.lng());
-        startLocation.latLong.lng = evt.latLng.lng();
-        console.log(startLocation);
-        getDistance2();
-    });
-    // ~~~ keep this event listener, but turn it off after the user clicks the map
+                                    // temp in degreeF
+                                    var temp = Math.round((data.main.temp - 273.15) * 1.80 + 32);
+                                    console.log(temp)
+
+                                    // lat and lon
+                                    var lat = data.coord.lat;
+                                    var lon = data.coord.lon;
+                                    console.log(lat, lon)
+                                })
+                            }
+
+                        })
 
 
-}
 
-// Adds a marker to the map.
-function addMarker(location, map) {
-    // Add the marker at the clicked location, and add the next-available label
-    // from the array of alphabetical characters.
-    console.log(location);
-    new google.maps.Marker({
-        position: location,
-        label: "U",
-        map: map,
-    });
-}
+                }
 
-var getDistance2 = function () {
-    // initialize services
-    // const geocoder = new google.maps.Geocoder();
-    const service = new google.maps.DistanceMatrixService();
+                //2. weather criteria > 80degrees
+                // function to see if temp in each city is greater than 80, if yes, have different background or some marker
 
-    // build request
-    var originLocationsArray = [];
-    var destinationLocationsArray = [];
-    destinationLocationsArray[0] = startLocation.latLong;
-    for (i = 0; i < sixCities.length; i++) {
-        originLocationsArray[i] = sixCities[i].latLong;
-        // destinationLocationsArray[i] = chicagoString;
-    }
-    console.log(originLocationsArray);
-    const request = {
-        origins: originLocationsArray,
-        destinations: destinationLocationsArray,
-        travelMode: google.maps.TravelMode.DRIVING,
-        unitSystem: google.maps.UnitSystem.METRIC,
-        avoidHighways: false,
-        avoidTolls: false,
-    };
 
-    // get distance matrix response
-    service.getDistanceMatrix(request).then((response) => {
-        // put response
-        console.log(JSON.stringify(
-            response,
-            null,
-            2
-        ));
-        console.log(response);
-        var receivedDistanceInformation = response;
-        console.log(receivedDistanceInformation);
-        for (i = 0; i < sixCities.length; i++) {
-            sixCities[0].distance = receivedDistanceInformation.rows[i].elements[0].distance;
-        }
-    })
-}
+
+                var startLocation = {
+                    latLong: { lat: "", lng: "" },
+                }
+
+                var cityIndexByDistanceArray = []
+                var cityIndexByTemperatureArray = []
+
+                function initMap() {
+                    const middle = { lat: 41, lng: -98 };
+                    const map = new google.maps.Map(document.getElementById("map"), {
+                        zoom: 3,
+                        center: middle,
+                    });
+
+                    for (i = 0; i < sixCities.length; i++) {
+                        new google.maps.Marker({
+                            position: sixCities[i].latLong,
+                            map: map,
+                        });
+                    }
+                    // This event listener calls addMarker() when the map is clicked.
+                    google.maps.event.addListener(map, "click", (evt) => {
+                        addMarker(evt.latLng, map);
+                        console.log(evt.latLng);
+                        console.log(evt.latLng.lat());
+                        startLocation.latLong.lat = evt.latLng.lat();
+                        console.log(evt.latLng.lng());
+                        startLocation.latLong.lng = evt.latLng.lng();
+                        console.log(startLocation);
+                        getDistance2();
+                    });
+                    // ~~~ keep this event listener, but turn it off after the user clicks the map
+
+
+                }
+
+                // Adds a marker to the map.
+                function addMarker(location, map) {
+                    // Add the marker at the clicked location, and add the next-available label
+                    // from the array of alphabetical characters.
+                    console.log(location);
+                    new google.maps.Marker({
+                        position: location,
+                        label: "U",
+                        map: map,
+                    });
+                }
+
+                var getDistance2 = function () {
+                    // initialize services
+                    // const geocoder = new google.maps.Geocoder();
+                    const service = new google.maps.DistanceMatrixService();
+
+                    // build request
+                    var originLocationsArray = [];
+                    var destinationLocationsArray = [];
+                    destinationLocationsArray[0] = startLocation.latLong;
+                    for (i = 0; i < sixCities.length; i++) {
+                        originLocationsArray[i] = sixCities[i].latLong;
+                        // destinationLocationsArray[i] = chicagoString;
+                    }
+                    console.log(originLocationsArray);
+                    const request = {
+                        origins: originLocationsArray,
+                        destinations: destinationLocationsArray,
+                        travelMode: google.maps.TravelMode.DRIVING,
+                        unitSystem: google.maps.UnitSystem.METRIC,
+                        avoidHighways: false,
+                        avoidTolls: false,
+                    };
+
+                    // get distance matrix response
+                    service.getDistanceMatrix(request).then((response) => {
+                        // put response
+                        console.log(JSON.stringify(
+                            response,
+                            null,
+                            2
+                        ));
+                        console.log(response);
+                        var receivedDistanceInformation = response;
+                        console.log(receivedDistanceInformation);
+                        for (i = 0; i < sixCities.length; i++) {
+                            sixCities[0].distance = receivedDistanceInformation.rows[i].elements[0].distance;
+                        }
+                    })
+                }
 
 
 // input 
