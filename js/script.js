@@ -11,6 +11,8 @@ var sanFrancisco = {
     latLong: { lat: 37.76, lng: -122.45 },
     temp: "",
     distance: "",
+    imageSrc: "",
+    imageAlt: ""
 };
 
 let saltLakeCity = {
@@ -18,6 +20,8 @@ let saltLakeCity = {
     latLong: { lat: 40.77, lng: -111.92 },
     temp: "",
     distance: "",
+    imageSrc: "",
+    imageAlt: ""
 }
 
 let sanAntonio = {
@@ -25,6 +29,8 @@ let sanAntonio = {
     latLong: { lat: 29.46, lng: -98.57 },
     temp: "",
     distance: "",
+    imageSrc: "",
+    imageAlt: ""
 }
 
 let newYork = {
@@ -32,6 +38,8 @@ let newYork = {
     latLong: { lat: 40.76, lng: -74.00 },
     temp: "",
     distance: "",
+    imageSrc: "",
+    imageAlt: ""
 }
 
 let miami = {
@@ -39,6 +47,8 @@ let miami = {
     latLong: { lat: 25.77, lng: -80.26 },
     temp: "",
     distance: "",
+    imageSrc: "images/miami.jpeg",
+    imageAlt: "Miami, Florida"
 }
 
 let lasVegas = {
@@ -46,6 +56,8 @@ let lasVegas = {
     latLong: { lat: 36.14, lng: -115.20 },
     temp: "",
     distance: "",
+    imageSrc: "",
+    imageAlt: ""
 }
 
 var sixCities = [sanFrancisco, saltLakeCity, sanAntonio, newYork, miami, lasVegas]
@@ -63,13 +75,13 @@ function getTemp(event) {
             if (response.ok) {
                 response.json()
                     .then(function (data) {
+                        cityIndexByTemperatureArray.push(data)
 
 
-                        //loop thru day1 to day 8 of forecast
+
+                        //loop thru day1 to day 5 of forecast
                         for (var i = 0; i < 5; i++) {
                             //date
-
-
 
                             var forecastDay = data.list[i * 8]  //data given in 3hrs,multiply by 8 to get 24 hrs
                             var date = new Date(parseInt(forecastDay.dt) * 1000)
@@ -78,19 +90,13 @@ function getTemp(event) {
                             if (yourDateFormat == formatDate) {
                                 //temp
                                 var temp = Math.round((forecastDay.main.temp - 273.15) * 1.80 + 32);
-                                console.log(temp)
 
                                 // populate temp in sixCities array
                                 sixCities[i].temp = temp
 
-
-
-
-
+                                console.log(temp, sixCities[i])
                             }
-
-
-                            console.log(sixCities[i])
+                            compareTemp(sixCities[i])
 
 
                         }
@@ -98,10 +104,43 @@ function getTemp(event) {
                     })
             }
         })
+
+        console.log(sixCities[i])
+
     }
+    //set timeout
+    //const myTimeout = setTimeout(updateCityCards, 500)
 }
 
+function updateCityCards() {
 
+
+
+    for (var data of cityIndexByTemperatureArray) {
+        //loop thru day1 to day 5 of forecast
+        for (var i = 0; i < 5; i++) {
+            //date
+
+            var forecastDay = data.list[i * 8]  //data given in 3hrs,multiply by 8 to get 24 hrs
+            var date = new Date(parseInt(forecastDay.dt) * 1000)
+            var formatDate = moment(date).format("MMM D, YYYY")
+            //console.log(forecastDay.dt, "forecastDay" + i, date, formatDate)
+            if (yourDateFormat == formatDate) {
+                //temp
+                var temp = Math.round((forecastDay.main.temp - 273.15) * 1.80 + 32);
+
+                // populate temp in sixCities array
+                sixCities[i].temp = temp
+
+                console.log(temp, sixCities[i])
+            }
+            compareTemp(sixCities[i])
+
+
+        }
+    }
+
+}
 
 
 
@@ -110,6 +149,29 @@ function getTemp(event) {
 
 
 // then compare temp values to input temp
+function compareTemp(city) {
+    // reference value of user's desired temp
+    var userTemp = $("#temp").val()
+    // show temp on the card
+    // var $otherOptionsCard = $(".destinations-card")
+    // console.log($otherOptionsCard)
+    // if ($otherOptionsCard.data("name") === city.name) {
+    //     $otherOptionsCard.find("h4").text(city.temp)
+
+    // }
+
+    // compare desired temp to actual city temp
+    if (temp > userTemp) {
+        var $recommendedCard = $("#recommended-destination")
+        // add the city info to the recommended card
+        $recommendedCard.find("h3").text(city.name)
+        $recommendedCard.find("img").attr({ "src": city.imageSrc, "alt": city.imageAlt })
+        $recommendedCard.find("h4").text(city.temp)
+        console.log("city", "temp")
+
+    }
+
+}
 
 
 
