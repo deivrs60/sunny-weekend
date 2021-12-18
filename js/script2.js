@@ -1,9 +1,8 @@
 // SR: I commented these out because they were throwing an error which was causing the map to not load properly
-var letsGoFormEl = document.getElementById("form")
+var letsGoFormEl = $("#form")
 var yourDateEl = $("#your-date")
 var tempEl = $("#temp")
-var letsGoButtonEl = document.getElementById("lets-go-btn")
-var recommendedTemp = 0
+
 
 
 
@@ -12,8 +11,8 @@ var sanFrancisco = {
     latLong: { lat: 37.76, lng: -122.45 },
     temp: "",
     distance: "",
-    imageSrc: "images/sanfrancisco.jpeg",
-    imageAlt: "San Francisco, California"
+    imageSrc: "",
+    imageAlt: ""
 };
 
 let saltLakeCity = {
@@ -21,8 +20,8 @@ let saltLakeCity = {
     latLong: { lat: 40.77, lng: -111.92 },
     temp: "",
     distance: "",
-    imageSrc: "images/saltlakecity.jpeg",
-    imageAlt: "Salt Lake City, Utah"
+    imageSrc: "",
+    imageAlt: ""
 }
 
 let sanAntonio = {
@@ -30,8 +29,8 @@ let sanAntonio = {
     latLong: { lat: 29.46, lng: -98.57 },
     temp: "",
     distance: "",
-    imageSrc: "images/sanantonio.jpeg",
-    imageAlt: "San Antonio, Texas"
+    imageSrc: "",
+    imageAlt: ""
 }
 
 let newYork = {
@@ -39,8 +38,8 @@ let newYork = {
     latLong: { lat: 40.76, lng: -74.00 },
     temp: "",
     distance: "",
-    imageSrc: "images/newyork.jpeg",
-    imageAlt: "New York, New York"
+    imageSrc: "",
+    imageAlt: ""
 }
 
 let miami = {
@@ -57,31 +56,16 @@ let lasVegas = {
     latLong: { lat: 36.14, lng: -115.20 },
     temp: "",
     distance: "",
-    imageSrc: "images/lasvegas.jpeg",
-    imageAlt: "Las Vegas, Nevada"
+    imageSrc: "",
+    imageAlt: ""
 }
 
 var sixCities = [sanFrancisco, saltLakeCity, sanAntonio, newYork, miami, lasVegas]
-
-var startLocation = {
-    latLong: { lat: "", lng: "" },
-}
-var desiredTemp = "";
-var desiredDate = {
-    dateAsString: "",
-    dateWithHour: "",
-    dateAsNumber: "",
-};
-var cityIndexByDistanceArray = [];
-var cityIndexByTemperatureArray = [];
-
-
 // put code in a function, on click, grab the input and run the function
 // weather forecast call to get 8-day forecast for sixCities array
 var APIKey = "be713046da2f1520bb5a2702cd2e8948";
 function getTemp(event) {
     event.preventDefault()
-    console.log('being clicked')
     var yourDateEl = $("#your-date").val()
     var yourDateFormat = moment(yourDateEl).format("MMM D, YYYY")
 
@@ -92,6 +76,8 @@ function getTemp(event) {
                 response.json()
                     .then(function (data) {
                         cityIndexByTemperatureArray.push(data)
+
+
 
                         //loop thru day1 to day 5 of forecast
                         for (var i = 0; i < 5; i++) {
@@ -110,7 +96,7 @@ function getTemp(event) {
 
                                 console.log(temp, sixCities[i])
                             }
-                            //compareTemp(sixCities[i], temp)
+                            compareTemp(sixCities[i])
 
 
                         }
@@ -119,9 +105,7 @@ function getTemp(event) {
             }
         })
 
-        console.log(sixCities[i], temp)
-
-
+        console.log(sixCities[i])
 
     }
     //set timeout
@@ -129,6 +113,8 @@ function getTemp(event) {
 }
 
 function updateCityCards() {
+
+
 
     for (var data of cityIndexByTemperatureArray) {
         //loop thru day1 to day 5 of forecast
@@ -148,7 +134,7 @@ function updateCityCards() {
 
                 console.log(temp, sixCities[i])
             }
-            compareTemp(sixCities[i], temp)
+            compareTemp(sixCities[i])
 
 
         }
@@ -157,19 +143,22 @@ function updateCityCards() {
 }
 
 
+
+// then populate temp value for sixCities array
+
+
+
 // then compare temp values to input temp
-function compareTemp(city, temp) {
-    console.log('here')
-    //var temp = Math.round((forecastDay.main.temp - 273.15) * 1.80 + 32);
+function compareTemp(city) {
     // reference value of user's desired temp
     var userTemp = $("#temp").val()
     // show temp on the card
-    //var $otherOptionsCard = $(".destinations-card")
-    //console.log($otherOptionsCard)
-    //if ($otherOptionsCard.data("name") === city.name) {
-    // $otherOptionsCard.find("h4").text(city.temp)
+    // var $otherOptionsCard = $(".destinations-card")
+    // console.log($otherOptionsCard)
+    // if ($otherOptionsCard.data("name") === city.name) {
+    //     $otherOptionsCard.find("h4").text(city.temp)
 
-
+    // }
 
     // compare desired temp to actual city temp
     if (temp > userTemp) {
@@ -181,9 +170,8 @@ function compareTemp(city, temp) {
         console.log("city", "temp")
 
     }
+
 }
-
-
 
 
 
@@ -230,6 +218,14 @@ function getDistance(yourCityEl) {
 // function to see if temp in each city is greater than 80, if yes, have different background or some marker
 
 
+
+var startLocation = {
+    latLong: { lat: "", lng: "" },
+}
+
+var cityIndexByDistanceArray = []
+var cityIndexByTemperatureArray = []
+
 function initMap() {
     const middle = { lat: 41, lng: -98 };
     const map = new google.maps.Map(document.getElementById("map"), {
@@ -255,6 +251,8 @@ function initMap() {
         getDistance2();
     });
     // ~~~ keep this event listener, but turn it off after the user clicks the map
+
+
 }
 
 // Adds a marker to the map.
@@ -310,33 +308,43 @@ var getDistance2 = function () {
 }
 
 
+letsGoFormEl.on("submit", getTemp)
 
 // input 
 // accept click from map 
-// criteria:
-// accepted date 
-// set up calendar input?
-// easier to offer dates?
-// accepted minimum temperature
-// modal (box on page?)
+    // criteria:
+    // accepted date 
+        // set up calendar input?
+        // easier to offer dates?
+    // accepted minimum temperature
+    // modal (box on page?)
 
 
-var acceptFormData = function (formData) {
-    formData.preventDefault();
-    console.log(formData);
-}
 
 
-letsGoFormEl.addEventListener("submit", getTemp)
+// weather 
+    // get weather for each city on the specified date
 
-//letsGoButtonEl.addEventListener("click", function (evt) {
-//     evt.preventDefault();
-//     console.log(evt);
-//     desiredTemp = evt.target.form[1].value;
-//     desiredDate.dateAsString = evt.target.form[0].value;
-//     desiredDate.dateWithHour = evt.target.form[0].valueAsDate;
-//     desiredDate.dateAsNumber = evt.target.form[0].valueAsNumber;
-// });
 
+// local storage
+    // what is stored / what does it look like?
+        // travel date / temperature (?) / current date of search (?)
+
+
+
+// display all(?) data for user to compare / select 
+    // highlight(?) recommended city?
+    // de-emphasize non-recommended 
+
+
+
+// DAVID AND JOANNE: DOES THIS PROCESS MAKE SENSE FOR USER EXPERIENCE?
+                    //user opens page
+                    //step 1: enter current location, this brings up a modal for step 2
+                    //step 2: enter date and minimum temperature desired
+                    //webpage shows:
+                        // - how many cities are forecasted to meet the weather criteria on the entered date
+                        // - cities that meet the criteria in order of distance (cities that don't meet the criteria aren't shown; if no city meets the criteria, no cities are shown and user receives message "no cities meet your criteria on the date selected")
+                        // - offer to run another query
 
 
