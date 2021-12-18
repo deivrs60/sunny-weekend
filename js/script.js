@@ -2,6 +2,7 @@
 var letsGoFormEl = $("#form")
 var yourDateEl = $("#your-date")
 var tempEl = $("#temp")
+var letsGoButtonEl = document.getElementById("lets-go-btn")
 
 
 
@@ -11,8 +12,8 @@ var sanFrancisco = {
     latLong: { lat: 37.76, lng: -122.45 },
     temp: "",
     distance: "",
-    imageSrc: "",
-    imageAlt: ""
+    imageSrc: "images/sanfrancisco.jpeg",
+    imageAlt: "San Francisco, California"
 };
 
 let saltLakeCity = {
@@ -20,8 +21,8 @@ let saltLakeCity = {
     latLong: { lat: 40.77, lng: -111.92 },
     temp: "",
     distance: "",
-    imageSrc: "",
-    imageAlt: ""
+    imageSrc: "images/saltlakecity.jpeg",
+    imageAlt: "Salt Lake City, Utah"
 }
 
 let sanAntonio = {
@@ -29,8 +30,8 @@ let sanAntonio = {
     latLong: { lat: 29.46, lng: -98.57 },
     temp: "",
     distance: "",
-    imageSrc: "",
-    imageAlt: ""
+    imageSrc: "images/sanantonio.jpeg",
+    imageAlt: "San Antonio, Texas"
 }
 
 let newYork = {
@@ -38,8 +39,8 @@ let newYork = {
     latLong: { lat: 40.76, lng: -74.00 },
     temp: "",
     distance: "",
-    imageSrc: "",
-    imageAlt: ""
+    imageSrc: "images/newyork.jpeg",
+    imageAlt: "New York, New York"
 }
 
 let miami = {
@@ -56,16 +57,30 @@ let lasVegas = {
     latLong: { lat: 36.14, lng: -115.20 },
     temp: "",
     distance: "",
-    imageSrc: "",
-    imageAlt: ""
+    imageSrc: "images/lasvegas.jpeg",
+    imageAlt: "Las Vegas, Nevada"
 }
 
 var sixCities = [sanFrancisco, saltLakeCity, sanAntonio, newYork, miami, lasVegas]
+
+var startLocation = {
+    latLong: { lat: "", lng: "" },
+}
+var desiredTemp = "";
+var desiredDate = {
+    dateAsString: "",
+    dateWithHour: "",
+    dateAsNumber: "",
+};
+var cityIndexByDistanceArray = [];
+var cityIndexByTemperatureArray = [];
+
+
 // put code in a function, on click, grab the input and run the function
 // weather forecast call to get 8-day forecast for sixCities array
 var APIKey = "be713046da2f1520bb5a2702cd2e8948";
-function getTemp(event) {
-    event.preventDefault()
+function getTemp() {
+    //event.preventDefault()
     var yourDateEl = $("#your-date").val()
     var yourDateFormat = moment(yourDateEl).format("MMM D, YYYY")
 
@@ -153,12 +168,12 @@ function compareTemp(city) {
     // reference value of user's desired temp
     var userTemp = $("#temp").val()
     // show temp on the card
-    // var $otherOptionsCard = $(".destinations-card")
-    // console.log($otherOptionsCard)
-    // if ($otherOptionsCard.data("name") === city.name) {
-    //     $otherOptionsCard.find("h4").text(city.temp)
+    //var $otherOptionsCard = $(".destinations-card")
+    //console.log($otherOptionsCard)
+    //if ($otherOptionsCard.data("name") === city.name) {
+    // $otherOptionsCard.find("h4").text(city.temp)
 
-    // }
+
 
     // compare desired temp to actual city temp
     if (temp > userTemp) {
@@ -170,8 +185,9 @@ function compareTemp(city) {
         console.log("city", "temp")
 
     }
-
 }
+
+
 
 
 
@@ -218,14 +234,6 @@ function getDistance(yourCityEl) {
 // function to see if temp in each city is greater than 80, if yes, have different background or some marker
 
 
-
-var startLocation = {
-    latLong: { lat: "", lng: "" },
-}
-
-var cityIndexByDistanceArray = []
-var cityIndexByTemperatureArray = []
-
 function initMap() {
     const middle = { lat: 41, lng: -98 };
     const map = new google.maps.Map(document.getElementById("map"), {
@@ -251,8 +259,6 @@ function initMap() {
         getDistance2();
     });
     // ~~~ keep this event listener, but turn it off after the user clicks the map
-
-
 }
 
 // Adds a marker to the map.
@@ -308,43 +314,46 @@ var getDistance2 = function () {
 }
 
 
-letsGoFormEl.on("submit", getTemp)
 
 // input 
 // accept click from map 
-    // criteria:
-    // accepted date 
-        // set up calendar input?
-        // easier to offer dates?
-    // accepted minimum temperature
-    // modal (box on page?)
+// criteria:
+// accepted date 
+// set up calendar input?
+// easier to offer dates?
+// accepted minimum temperature
+// modal (box on page?)
 
+
+var acceptFormData = function (formData) {
+    formData.preventDefault();
+    console.log(formData);
+}
 
 
 
 // weather 
-    // get weather for each city on the specified date
+// get weather for each city on the specified date
 
 
 // local storage
-    // what is stored / what does it look like?
-        // travel date / temperature (?) / current date of search (?)
+// what is stored / what does it look like?
+// travel date / temperature (?) / current date of search (?)
 
 
 
 // display all(?) data for user to compare / select 
-    // highlight(?) recommended city?
-    // de-emphasize non-recommended 
+// highlight(?) recommended city?
+// de-emphasize non-recommended 
 
+letsGoButtonEl.addEventListener("click", function (evt) {
+    evt.preventDefault();
+    console.log(evt);
+    desiredTemp = evt.target.form[1].value;
+    desiredDate.dateAsString = evt.target.form[0].value;
+    desiredDate.dateWithHour = evt.target.form[0].valueAsDate;
+    desiredDate.dateAsNumber = evt.target.form[0].valueAsNumber;
+});
 
-
-// DAVID AND JOANNE: DOES THIS PROCESS MAKE SENSE FOR USER EXPERIENCE?
-                    //user opens page
-                    //step 1: enter current location, this brings up a modal for step 2
-                    //step 2: enter date and minimum temperature desired
-                    //webpage shows:
-                        // - how many cities are forecasted to meet the weather criteria on the entered date
-                        // - cities that meet the criteria in order of distance (cities that don't meet the criteria aren't shown; if no city meets the criteria, no cities are shown and user receives message "no cities meet your criteria on the date selected")
-                        // - offer to run another query
-
+letsGoFormEl.on("submit", getTemp)
 
