@@ -78,7 +78,8 @@ body {
     justify-content: space-evenly;
 }
 
-.hero p {
+.hero p,
+#form-instructions {
     font-size: 28px;
     text-align: left;
     padding: 0 15px;
@@ -201,7 +202,7 @@ body {
 }
 
 .recom-descrip h3 {
-    font-size: 35px;
+    font-size: 48px;
     padding-top: 60px;
 }
 

@@ -137,12 +137,12 @@ function initMap() {
     // This event listener calls addMarker() when the map is clicked.
     google.maps.event.addListener(map, "click", (evt) => {
         addMarker(evt.latLng, map);
-        console.log(evt.latLng);
-        console.log(evt.latLng.lat());
+        //console.log(evt.latLng);
+        //console.log(evt.latLng.lat());
         startLocation.latLong.lat = evt.latLng.lat();
-        console.log(evt.latLng.lng());
+        //console.log(evt.latLng.lng());
         startLocation.latLong.lng = evt.latLng.lng();
-        console.log(startLocation);
+        //console.log(startLocation);
         getDistance2();
     });
     // ~~~ keep this event listener, but turn it off after the user clicks the map
@@ -152,7 +152,7 @@ function initMap() {
 function addMarker(location, map) {
     // Add the marker at the clicked location, and add the next-available label
     // from the array of alphabetical characters.
-    console.log(location);
+    //console.log(location);
     new google.maps.Marker({
         position: location,
         label: "U",
@@ -173,7 +173,7 @@ var getDistance2 = function () {
         originLocationsArray[i] = sixCities[i].latLong;
         // destinationLocationsArray[i] = chicagoString;
     }
-    console.log(originLocationsArray);
+    //console.log(originLocationsArray);
     const request = {
         origins: originLocationsArray,
         destinations: destinationLocationsArray,
@@ -186,14 +186,14 @@ var getDistance2 = function () {
     // get distance matrix response
     service.getDistanceMatrix(request).then((response) => {
         // put response
-        console.log(JSON.stringify(
-            response,
-            null,
-            2
-        ));
-        console.log(response);
+        //console.log(JSON.stringify(
+        //     response,
+        //     null,
+        //     2
+        // ));
+        //console.log(response);
         var receivedDistanceInformation = response;
-        console.log(receivedDistanceInformation);
+        //console.log(receivedDistanceInformation);
         for (i = 0; i < sixCities.length; i++) {
             sixCities[0].distance = receivedDistanceInformation.rows[i].elements[0].distance;
         }
@@ -209,11 +209,6 @@ var getDistance2 = function () {
         // easier to offer dates?
     // accepted minimum temperature
     // modal (box on page?)
-
-var acceptFormData = function(formData) {
-    formData.preventDefault();
-    console.log(formData);
-}
 
 // weather 
     // get weather for each city on the specified date
