@@ -53,70 +53,112 @@ var desiredDate = {
     dateWithHour: "",
     dateAsNumber: "",
 };
-var cityIndexByDistanceArray = [];
+var arrayOfCityIndicesByDistance = [];
+var arrayOfCityIndicesByTemperature = [];
+var indexOfRecommendedCity = "";
+
+var cityMeetsMinimumTemperature = function() {
+    if (sixCities[arrayOfCityIndicesByTemperature[0]].temp >= desiredTemp) {
+        return true;
+    }
+    return false;
+}
+
+
+var addRecommendedCard = function() {
+    if (cityMeetsMinimumTemperature()) {
+        // displayRecommendedCity
+        return true;
+    } else {
+        // display no city meets the temperature requirement
+        return false;
+    }
+}
+
+var addOtherCards = function() {
+    for ( i = 0; i < sixCities.length; i++ ) {
+        // if city is not recommended
+            // if city meets minimum temp
+                // display city
+                    // var scriptEl = document.createElement("script");
+                    // scriptEl.src = url1 + url2 + url3;
+                    // document.body.appendChild(scriptEl);            
+    }
+}
+
+// this is used by getTemp
 var cityIndexByTemperatureArray = [];
 
 // weather forecast call to get 8-day forecast for sixCities array
 var APIKey = "be713046da2f1520bb5a2702cd2e8948";
-for (var i = 0; i < sixCities.length; i++) {
-    var forecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + sixCities[i].name + "&appid=" + APIKey;
-    fetch(forecast).then(function (response) {
-        if (response.ok) {
-            response.json()
-                .then(function (data) {
-                    //console.log(data)
-                    //loop thru day1 to day 8 of forecast
-                    for (var i = 0; i < 5; i++) {
-                        //date
-                        var forecastDay = data.list[i * 8]  //data given in 3hrs,multiply by 8 to get 24 hrs
-                        var date = new Date(parseInt(forecastDay.dt) * 1000)
-                        var formatDate = moment(date).format("MMM D, YYYY")
-                        //console.log(forecastDay.dt, "forecastDay" + i, date, formatDate)
 
-                        //temp
-                        var temp = Math.round((forecastDay.main.temp - 273.15) * 1.80 + 32);
-                        //console.log(temp)
-
-                        // populate temp in sixCities array
-                        sixCities[i].temp = temp
-                    }
-                })
-        }
-    })
+var getTemp = function() {
+    var yourDateFormat = moment(desiredDate.dateAsString).format("MMM D, YYYY")
+    for (var i = 0; i < sixCities.length; i++) {
+        var forecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + sixCities[i].name + "&appid=" + APIKey;
+        fetch(forecast).then(function (response) {
+            if (response.ok) {
+                response.json()
+                    .then(function (data) {
+                        cityIndexByTemperatureArray.push(data)
+                        //loop thru day1 to day 5 of forecast
+                        for (var i = 0; i < 5; i++) {
+                            //date
+                            var forecastDay = data.list[i * 8]  //data given in 3hrs,multiply by 8 to get 24 hrs
+                            var date = new Date(parseInt(forecastDay.dt) * 1000)
+                            var formatDate = moment(date).format("MMM D, YYYY")
+                            //console.log(forecastDay.dt, "forecastDay" + i, date, formatDate)
+                            if (yourDateFormat == formatDate) {
+                                //temp
+                                var temp = Math.round((forecastDay.main.temp - 273.15) * 1.80 + 32);
+                                // populate temp in sixCities array
+                                sixCities[i].temp = temp
+                                console.log(temp, sixCities[i])
+                            }
+                            compareTemp(sixCities[i])
+                        }
+                    })
+            }
+        })
+        console.log(sixCities[i])
+    }
 }
 
 // compare criteria to the weather
 //1. what's closest? yourCityEl input compared to sixCities array which contains lon/lat info
 // get a diff API call to get distance and then sort closest to furthest
-function getDistance(yourCityEl) {
 
-    // query url to make the API call 
-    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + yourCityEl + "&appid=" + APIKey;
+// ?????????????
+// THIS CODE DOESN'T SEEM TO DO ANYTHING
+// function getDistance(yourCityEl) {
 
-    // make a get request to url
-    fetch(queryURL)
-        .then(function (response) {
-            //request successful
-            if (response.ok) {
+//     // query url to make the API call 
+//     var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + yourCityEl + "&appid=" + APIKey;
 
-                response.json().then(function (data) {
-                    //console.log(data)
-                    // get date using moment js
-                    var date = moment().format(" MM/DD/YYYY");
-                    console.log(date)
+//     // make a get request to url
+//     fetch(queryURL)
+//         .then(function (response) {
+//             //request successful
+//             if (response.ok) {
 
-                    // temp in degreeF
-                    var temp = Math.round((data.main.temp - 273.15) * 1.80 + 32);
-                    console.log(temp)
+//                 response.json().then(function (data) {
+//                     //console.log(data)
+//                     // get date using moment js
+//                     var date = moment().format(" MM/DD/YYYY");
+//                     console.log(date)
 
-                    // lat and lon
-                    var lat = data.coord.lat;
-                    var lon = data.coord.lon;
-                    console.log(lat, lon)
-                })
-            }
-        })
-}
+//                     // temp in degreeF
+//                     var temp = Math.round((data.main.temp - 273.15) * 1.80 + 32);
+//                     console.log(temp)
+
+//                     // lat and lon
+//                     var lat = data.coord.lat;
+//                     var lon = data.coord.lon;
+//                     console.log(lat, lon)
+//                 })
+//             }
+//         })
+// }
 
 //2. weather criteria > 80degrees
 // function to see if temp in each city is greater than 80, if yes, have different background or some marker
@@ -145,13 +187,12 @@ function initMap() {
         //console.log(startLocation);
         getDistance2();
     });
-    // ~~~ keep this event listener, but turn it off after the user clicks the map
+    // TODO turn off event listener after the user clicks the map
 }
 
 // Adds a marker to the map.
 function addMarker(location, map) {
-    // Add the marker at the clicked location, and add the next-available label
-    // from the array of alphabetical characters.
+    // Add the marker at the clicked location
     //console.log(location);
     new google.maps.Marker({
         position: location,
@@ -224,6 +265,12 @@ var getDistance2 = function () {
     // highlight(?) recommended city?
     // de-emphasize non-recommended 
 
+var displayRecommendedCity = function(){
+    // var scriptEl = document.createElement("script");
+    // scriptEl.src = url1 + url2 + url3;
+    // document.body.appendChild(scriptEl);
+}     
+
 
 letsGoButtonEl.addEventListener("click", function(evt){
     evt.preventDefault();
@@ -232,4 +279,8 @@ letsGoButtonEl.addEventListener("click", function(evt){
     desiredDate.dateAsString = evt.target.form[0].value;
     desiredDate.dateWithHour = evt.target.form[0].valueAsDate;
     desiredDate.dateAsNumber = evt.target.form[0].valueAsNumber;
+    getTemp();
+    if (addRecommendedCard()) {
+        addOtherCards();
+    };
 });
